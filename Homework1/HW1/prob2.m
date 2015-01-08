@@ -10,11 +10,6 @@ X=iris(:,1:end-1);
 XtrFirstTwo = Xtr(:,1:2);
 XteFirstTwo = Xte(:,1:2);
 
-%knn = knnClassify( XtrFirstTwo, Ytr, K ); % replace or set K to some integer
-%YteHat = predict( knn, XteFirstTwo ); % make predictions on Xtest
-
-%plotClassify2D( knn, XtrFirstTwo, Ytr ); % make 2D classification plot with data (Xtr,Ytr)
-
 %partA
 %{
 
