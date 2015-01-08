@@ -49,8 +49,7 @@ for i=1:length(Kvals)
 end;
 figure
 hold on
-semilogx(Kvals,errTrain);
-semilogx(Kvals,errTest);
+semilogx(Kvals,errTrain,'-','LineWidth',2,'Color','red');
+semilogx(Kvals,errTest,'-','LineWidth',2,'Color','green');
 hold off
-%figure; semilogx(... % TODO: " " to average and plot results on semi-log scale
 
