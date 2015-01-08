@@ -50,4 +50,30 @@ std4 = std(feature4);
 
 %part E
 % Normalizes the data
-%normalize1 = 
+normalize1 = (feature1-mean1)/std1;
+normalize2 = (feature2-mean2)/std2;
+normalize3 = (feature3-mean3)/std3;
+normalize4 = (feature4-mean4)/std4;
+
+%part F
+figure
+scatter(normalize1,normalize2,30,y);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
