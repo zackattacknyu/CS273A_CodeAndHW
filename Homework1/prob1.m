@@ -60,16 +60,34 @@ size = 30;
 figure
 subplot(2,3,1)
 scatter(normalize1,normalize2,size,y);
+title('Feature 1 vs. Feature 2');
+xlabel('Feature 1 Value');
+ylabel('Feature 2 Value');
 subplot(2,3,2)
 scatter(normalize1,normalize3,size,y);
+title('Feature 1 vs. Feature 3');
+xlabel('Feature 1 Value');
+ylabel('Feature 3 Value');
 subplot(2,3,3)
 scatter(normalize1,normalize4,size,y);
+title('Feature 1 vs. Feature 4');
+xlabel('Feature 1 Value');
+ylabel('Feature 4 Value');
 subplot(2,3,4)
 scatter(normalize2,normalize3,size,y);
+title('Feature 2 vs. Feature 3');
+xlabel('Feature 2 Value');
+ylabel('Feature 3 Value');
 subplot(2,3,5)
 scatter(normalize2,normalize4,size,y);
+title('Feature 2 vs. Feature 4');
+xlabel('Feature 2 Value');
+ylabel('Feature 4 Value');
 subplot(2,3,6)
 scatter(normalize3,normalize4,size,y);
+title('Feature 3 vs. Feature 4');
+xlabel('Feature 3 Value');
+ylabel('Feature 4 Value');
 
 
 
