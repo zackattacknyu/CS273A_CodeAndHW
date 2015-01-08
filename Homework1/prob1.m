@@ -56,8 +56,21 @@ normalize3 = (feature3-mean3)/std3;
 normalize4 = (feature4-mean4)/std4;
 
 %part F
+size = 30;
 figure
-scatter(normalize1,normalize2,30,y);
+subplot(2,3,1)
+scatter(normalize1,normalize2,size,y);
+subplot(2,3,2)
+scatter(normalize1,normalize3,size,y);
+subplot(2,3,3)
+scatter(normalize1,normalize4,size,y);
+subplot(2,3,4)
+scatter(normalize2,normalize3,size,y);
+subplot(2,3,5)
+scatter(normalize2,normalize4,size,y);
+subplot(2,3,6)
+scatter(normalize3,normalize4,size,y);
+
 
 
 
