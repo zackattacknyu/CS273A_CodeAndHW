@@ -19,14 +19,14 @@ K = 3;
 %part A
 figure
 Kvals = [1,5,10,50];
-numVals = length(Kvals);
-for i=1:numVals
+for i=1:4
    K = Kvals(i);
    
    %train the classifier
    knn = knnClassify( XtrFirstTwo, Ytr, K );
    
    % make 2D classification plot
-   subplot(1,numVals,i)
+   subplot(2,2,i)
    plotClassify2D( knn, XtrFirstTwo, Ytr );
+   title(strcat('K=',num2str(K),' classification plot'));
 end
