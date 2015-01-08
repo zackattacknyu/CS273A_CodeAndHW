@@ -9,9 +9,24 @@ X=iris(:,1:end-1);
 XtrFirstTwo = Xtr(:,1:2);
 XteFirstTwo = Xte(:,1:2);
 
-%train the classifier
-K = 3;
-knn = knnClassify( XtrFirstTwo, Ytr, K ); % replace or set K to some integer
-YteHat = predict( knn, XteFirstTwo ); % make predictions on Xtest
 
-plotClassify2D( knn, XtrFirstTwo, Ytr ); % make 2D classification plot with data (Xtr,Ytr)
+K = 3;
+%knn = knnClassify( XtrFirstTwo, Ytr, K ); % replace or set K to some integer
+%YteHat = predict( knn, XteFirstTwo ); % make predictions on Xtest
+
+%plotClassify2D( knn, XtrFirstTwo, Ytr ); % make 2D classification plot with data (Xtr,Ytr)
+
+%part A
+figure
+Kvals = [1,5,10,50];
+numVals = length(Kvals);
+for i=1:numVals
+   K = Kvals(i);
+   
+   %train the classifier
+   knn = knnClassify( XtrFirstTwo, Ytr, K );
+   
+   % make 2D classification plot
+   subplot(1,numVals,i)
+   plotClassify2D( knn, XtrFirstTwo, Ytr );
+end
