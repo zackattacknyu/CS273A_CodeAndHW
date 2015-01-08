@@ -1,4 +1,4 @@
-iris = load('HW1/data/iris.txt');
+iris = load('data/iris.txt');
 y = iris(:,end);
 X = iris(:,1:end-1);
 
