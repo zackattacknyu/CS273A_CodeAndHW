@@ -37,12 +37,15 @@ end
 %part B
 Kvals=[1,2,5,10,50,100,200];
 errTrain=zeros(1,length(Kvals));
+errTrainTest = zeros(1,length(Kvals));
 for i=1:length(Kvals)
     K = Kvals(i);
     learner = knnClassify( XtrFirstTwo, Ytr, K );
     Yhat = predict(learner,XtrFirstTwo);
     errTrain(i)=length(find(Yhat~=Ytr))/length(Ytr);
-    %TODO: repeat prediction / error evaluation for test data
+    
+    YhatTe = predict(learner,XteFirstTwo);
+    errTrainTest(i)=length(find(YhatTe~=Yte))/length(Yte);
 end;
 %figure; semilogx(... % TODO: " " to average and plot results on semi-log scale
 
