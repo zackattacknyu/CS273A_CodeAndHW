@@ -40,11 +40,11 @@ for i = 1:4
     
     XiwhereY1 = Xi(indicesY1); %x_i values for entries where y=1
     probXwhereY1(i,1) = length(find(XiwhereY1==0))/length(XiwhereY1);
-    probXwhereY1(i,2) = length(find(XiwhereY1==1))/length(XiwhereY1);
+    probXwhereY1(i,2) = 1-probXwhereY1(i,1);
     
     XiwhereYminus1 = Xi(indicesYminus1); %x_i values for entries where y=-1
     probXwhereYminus1(i,1) = length(find(XiwhereYminus1==0))/length(XiwhereYminus1);
-    probXwhereYminus1(i,2) = length(find(XiwhereYminus1==1))/length(XiwhereYminus1);
+    probXwhereYminus1(i,2) = 1-probXwhereYminus1(i,1);
 end
 
 
