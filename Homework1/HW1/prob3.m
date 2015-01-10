@@ -33,9 +33,9 @@ probYminus1 = 1-probY1;
 %       row i has probabilities for x_i
 %       column 1 is p(x_i=0|y=-1)
 %       column 2 is p(x_i=1|y=-1)
-probXwhereY1 = zeros(4,2);
-probXwhereYminus1 = zeros(4,2);
-for i = 1:4
+probXwhereY1 = zeros(5,2);
+probXwhereYminus1 = zeros(5,2);
+for i = 1:5
     Xi = X(:,i);
     
     XiwhereY1 = Xi(indicesY1); %x_i values for entries where y=1
@@ -45,6 +45,20 @@ for i = 1:4
     XiwhereYminus1 = Xi(indicesYminus1); %x_i values for entries where y=-1
     probXwhereYminus1(i,1) = length(find(XiwhereYminus1==0))/length(XiwhereYminus1);
     probXwhereYminus1(i,2) = 1-probXwhereYminus1(i,1);
+end
+
+%part B
+%Using Naive Bayes, p(y|x) = p(x|y)p(y)/p(x)
+%   p(x) = sum_y( p(x|y)p(y) )
+%   p(x|y)=p(x_1|y)p(x_2|y)...p(x_5|y)
+
+%We need to find the y prob of x=(0 0 0 0 0)
+xTest1 = [0 0 0 0 0];
+probXtestWhereY1 = zeros(1,5);
+probXtestWhereYminus1 = zeros(1,5);
+for i = 1:5
+   probXtestWhereY1(i) = probXwhereY1(i,xTest1(i)+1); 
+   probXtestWhereYminus1(i) = probXwhereYminus1(i,xTest1(i)+1); 
 end
 
 
