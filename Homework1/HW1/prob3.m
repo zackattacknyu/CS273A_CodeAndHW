@@ -33,19 +33,18 @@ probYminus1 = 1-probY1;
 %       row i has probabilities for x_i
 %       column 1 is p(x_i=0|y=-1)
 %       column 2 is p(x_i=1|y=-1)
-X1 = X(:,1);
-X1whereY1 = X1(indicesY1); %x1 values for entries where y=1
-X1whereYminus1 = X1(indicesYminus1); %x1 values for entries where y=-1
 probXwhereY1 = zeros(4,2);
 probXwhereYminus1 = zeros(4,2);
 for i = 1:4
     Xi = X(:,i);
     
-    XiwhereY1 = Xi(indicesY1);
+    XiwhereY1 = Xi(indicesY1); %x_i values for entries where y=1
     probXwhereY1(i,1) = length(find(XiwhereY1==0))/length(XiwhereY1);
     probXwhereY1(i,2) = length(find(XiwhereY1==1))/length(XiwhereY1);
     
-    XiwhereYminus1 = Xi(indicesYminus1);
+    XiwhereYminus1 = Xi(indicesYminus1); %x_i values for entries where y=-1
     probXwhereYminus1(i,1) = length(find(XiwhereYminus1==0))/length(XiwhereYminus1);
     probXwhereYminus1(i,2) = length(find(XiwhereYminus1==1))/length(XiwhereYminus1);
 end
+
+
