@@ -69,4 +69,7 @@ if(probY1withXtest1<probYminus1withXtest1)
     bestYclassification2 = -1; 
 end
 
+%part C
+probY1withXtest2
+
 
