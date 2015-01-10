@@ -54,11 +54,24 @@ end
 
 %We need to find the y prob of x=(0 0 0 0 0)
 xTest1 = [0 0 0 0 0];
-probXtestWhereY1 = zeros(1,5);
-probXtestWhereYminus1 = zeros(1,5);
+probXtest1WhereY1 = zeros(1,5);
+probXtest1WhereYminus1 = zeros(1,5);
 for i = 1:5
-   probXtestWhereY1(i) = probXwhereY1(i,xTest1(i)+1); 
-   probXtestWhereYminus1(i) = probXwhereYminus1(i,xTest1(i)+1); 
+   probXtest1WhereY1(i) = probXwhereY1(i,xTest1(i)+1); 
+   probXtest1WhereYminus1(i) = probXwhereYminus1(i,xTest1(i)+1); 
+end
+probXtest1WithY1 = prod(probXtestWhereY1)*probY1;
+probXtest1WithYminus1 = prod(probXtestWhereYminus1)*probYminus1;
+
+%finally here is p(y=1|x)
+probY1withXtest1 = probXtest1WithY1/(probXtest1WithY1+probXtest1WithYminus1);
+
+%here is p(y=-1|x)
+probYminus1withXtest1 = probXtest1WithYminus1/(probXtest1WithY1+probXtest1WithYminus1);
+
+bestYclassification = 1;
+if(probY1withXtest1<probYminus1withXtest1)
+    bestYclassification = -1; 
 end
 
 
