@@ -231,6 +231,31 @@ Based on this plot, I would recommend $K=50$
 \caption{The semilog plot for Problem 2}
 \end{figure}
 
+\newpage
+
+This is the rest of the code for problem 2, the part which was used to make the plots for part b. 
+
+\begin{verbatim}
+%part B
+Kvals=[1,2,5,10,50,100,200];
+errTrain=zeros(1,length(Kvals));
+errTest = zeros(1,length(Kvals));
+for i=1:length(Kvals)
+    K = Kvals(i);
+    learner = knnClassify( XtrFirstTwo, Ytr, K );
+    YhatTr = predict(learner,XtrFirstTwo);
+    errTrain(i)=length(find(YhatTr~=Ytr))/length(Ytr);
+    
+    YhatTe = predict(learner,XteFirstTwo);
+    errTest(i)=length(find(YhatTe~=Yte))/length(Yte);
+end;
+figure
+hold on
+semilogx(Kvals,errTrain,'-','LineWidth',2,'Color','red');
+semilogx(Kvals,errTest,'-','LineWidth',2,'Color','green');
+hold off
+\end{verbatim}
+
 \end{document}
 
 
