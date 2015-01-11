@@ -41,4 +41,6 @@ figure
 hold on
 scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
 plotGauss2D(XtrMeanClass0,XtrCovClass0,'b-');
+plotGauss2D(XtrMeanClass1,XtrCovClass1,'g-');
+plotGauss2D(XtrMeanClass2,XtrCovClass2,'y-');
 hold off
