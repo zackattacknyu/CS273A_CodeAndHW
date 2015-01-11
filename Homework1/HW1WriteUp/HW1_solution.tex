@@ -33,7 +33,7 @@
 
 \title{CS 273 Homework 1}
 \author{Zachary DeStefano, 15247592}
-\date{Due Date: Wednesday, January 14, 2015}
+\date{Due Date: Tuesday, January 13, 2015}
 
 \maketitle
 
@@ -60,6 +60,91 @@ The number of observations is 148\\
 \caption{Histograms for each feature}
 \end{figure}
 
+\newpage
+
+\subsection*{Problem 1, Part c}
+
+The mean of feature 1 is 5.9001\\
+The mean of feature 2 is 3.0989\\
+The mean of feature 3 is 3.8196\\
+The mean of feature 4 is 1.2526\\
+
+\subsection*{Problem 1, Part d}
+
+The variance of feature 1 is 0.6993\\
+The variance of feature 2 is 0.1916\\
+The variance of feature 3 is 3.0976\\
+The variance of feature 4 is 0.5797\\
+\\
+The standard deviation of feature 1 is 0.8362\\
+The standard deviation of feature 2 is 0.4378\\
+The standard deviation of feature 3 is 1.7600\\
+The standard deviation of feature 4 is 0.7613\\
+
+\subsection*{Problem 1, Part e}
+
+Here is the code for part E. The initial parts of the code covers previous parts of this problem. 
+
+\begin{verbatim}
+
+iris = load('data/iris.txt');
+y = iris(:,end);
+X = iris(:,1:end-1);
+
+%part A
+numFeatures = size(X,2);
+numDataPoints = size(X,1);
+
+%put features into vectors
+feature1 = X(:,1);
+feature2 = X(:,2);
+feature3 = X(:,3);
+feature4 = X(:,4);
+
+%part B
+figure
+subplot(2,2,1)
+hist(feature1)
+title('Histogram for Feature 1')
+subplot(2,2,2)
+hist(feature2)
+title('Histogram for Feature 2')
+subplot(2,2,3)
+hist(feature3)
+title('Histogram for Feature 3')
+subplot(2,2,4)
+hist(feature4)
+title('Histogram for Feature 4')
+
+%part C
+mean1 = mean(feature1);
+mean2 = mean(feature2);
+mean3 = mean(feature3);
+mean4 = mean(feature4);
+
+
+%part D
+
+%compute the variance
+var1 = var(feature1);
+var2 = var(feature2);
+var3 = var(feature3);
+var4 = var(feature4);
+
+%compute the standard deviation
+std1 = std(feature1);
+std2 = std(feature2);
+std3 = std(feature3);
+std4 = std(feature4);
+
+%part E
+% Normalizes the data
+normalize1 = (feature1-mean1)/std1;
+normalize2 = (feature2-mean2)/std2;
+normalize3 = (feature3-mean3)/std3;
+normalize4 = (feature4-mean4)/std4;
+
+\end{verbatim}
 
 \end{document}
 
