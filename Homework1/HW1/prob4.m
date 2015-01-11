@@ -30,3 +30,15 @@ XtrMeanClass2 = mean(XtrClass2);
 XtrCovClass0 = cov(XtrClass0);
 XtrCovClass1 = cov(XtrClass1);
 XtrCovClass2 = cov(XtrClass2);
+
+%Part B
+size = 30;
+figure
+scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
+
+%Part C
+figure
+hold on
+scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
+plotGauss2D(XtrMeanClass0,XtrCovClass0,'b-');
+hold off
