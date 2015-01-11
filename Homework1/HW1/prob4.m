@@ -53,7 +53,28 @@ plotClassify2D(bc, XtrFirstTwo, Ytr);
 %
 %Part E
 yTrHat = predict(bc,XtrFirstTwo);
-trainError = length(find(yTrHat==Ytr))/length(Ytr);
+trainError = length(find(yTrHat~=Ytr))/length(Ytr);
 
 yTeHat = predict(bc,XteFirstTwo);
-testError = length(find(yTeHat==Yte))/length(Yte);
+testError = length(find(yTeHat~=Yte))/length(Yte);
+
+%%
+%Part F
+XtrAllClass0 = Xtr(Ytr0Indices,:);
+XtrAllClass1 = Xtr(Ytr1Indices,:);
+XtrAllClass2 = Xtr(Ytr2Indices,:);
+
+XtrAllMeanClass0 = mean(XtrAllClass0);
+XtrAllMeanClass1 = mean(XtrAllClass1);
+XtrAllMeanClass2 = mean(XtrAllClass2);
+
+XtrAllCovClass0 = cov(XtrAllClass0);
+XtrAllCovClass1 = cov(XtrAllClass1);
+XtrAllCovClass2 = cov(XtrAllClass2);
+
+bcTrAll = gaussBayesClassify( Xtr, Ytr );
+yTrAllHat = predict(bcTrAll,Xtr);
+trainErrorAll = length(find(yTrAllHat~=Ytr))/length(Ytr);
+
+yTeAllHat = predict(bcTrAll,Xte);
+testErrorAll = length(find(yTeAllHat~=Yte))/length(Yte);
