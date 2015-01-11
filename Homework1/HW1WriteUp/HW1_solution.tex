@@ -173,6 +173,64 @@ xlabel('Feature 1 Value');
 ylabel('Feature 4 Value');
 \end{verbatim}
 
+\newpage
+
+\section*{Problem 2}
+
+\subsection*{Problem 2, Part a}
+
+These are the plots for part a
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{prob2aPlots.jpg}
+\caption{The scatter plots for Problem 2a}
+\end{figure}
+
+\newpage
+
+Here is the code I used to generate those plots
+
+\begin{verbatim}
+%InitialPart
+iris=load('data/iris.txt'); 
+y=iris(:,end); 
+X=iris(:,1:end-1);
+
+[X y] = shuffleData(X,y); % shuffle data randomly
+[Xtr Xte Ytr Yte] = splitData(X,y, .75); % split data into 75/25 train/test
+
+%gets the first 2 features
+XtrFirstTwo = Xtr(:,1:2);
+XteFirstTwo = Xte(:,1:2);
+
+%partA
+figure
+Kvals = [1,5,10,50];
+for i=1:4
+   K = Kvals(i);
+   
+   %train the classifier
+   knn = knnClassify( XtrFirstTwo, Ytr, K );
+   
+   % make 2D classification plot
+   subplot(2,2,i)
+   plotClassify2D( knn, XtrFirstTwo, Ytr );
+   title(strcat('K=',num2str(K),' classification plot'));
+end
+\end{verbatim}
+
+\subsection*{Problem 2, Part b}
+
+Here is the training error (in Red) and the test error (in green) as the value of K increases. \\
+Based on this plot, I would recommend $K=50$
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{prob2bPlot.jpg}
+\caption{The semilog plot for Problem 2}
+\end{figure}
+
 \end{document}
 
 

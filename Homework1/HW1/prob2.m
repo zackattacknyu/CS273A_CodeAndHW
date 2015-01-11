@@ -11,8 +11,6 @@ XtrFirstTwo = Xtr(:,1:2);
 XteFirstTwo = Xte(:,1:2);
 
 %partA
-%{
-
 figure
 Kvals = [1,5,10,50];
 for i=1:4
@@ -26,8 +24,6 @@ for i=1:4
    plotClassify2D( knn, XtrFirstTwo, Ytr );
    title(strcat('K=',num2str(K),' classification plot'));
 end
-
-%}
 
 %part B
 Kvals=[1,2,5,10,50,100,200];
