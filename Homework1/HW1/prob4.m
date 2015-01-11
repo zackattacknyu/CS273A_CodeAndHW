@@ -44,3 +44,16 @@ plotGauss2D(XtrMeanClass0,XtrCovClass0,'b-');
 plotGauss2D(XtrMeanClass1,XtrCovClass1,'g-');
 plotGauss2D(XtrMeanClass2,XtrCovClass2,'y-');
 hold off
+
+%Part D
+bc = gaussBayesClassify( XtrFirstTwo, Ytr );
+figure
+plotClassify2D(bc, XtrFirstTwo, Ytr);
+
+%
+%Part E
+yTrHat = predict(bc,XtrFirstTwo);
+trainError = length(find(yTrHat==Ytr))/length(Ytr);
+
+yTeHat = predict(bc,XteFirstTwo);
+testError = length(find(yTeHat==Yte))/length(Yte);
