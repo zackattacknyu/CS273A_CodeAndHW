@@ -84,9 +84,7 @@ The standard deviation of feature 4 is 0.7613\\
 \subsection*{Problem 1, Part e}
 
 Here is the code for part E. The initial parts of the code covers previous parts of this problem. 
-
 \begin{verbatim}
-
 iris = load('data/iris.txt');
 y = iris(:,end);
 X = iris(:,1:end-1);
@@ -153,6 +151,27 @@ normalize4 = (feature4-mean4)/std4;
 \includegraphics[width=\columnwidth]{prob1fScatterPlots.jpg}
 \caption{The scatter plots for Problem 1f}
 \end{figure}
+
+This is the code to make those plots. It is a continuation of the code posted for part e. 
+\begin{verbatim}
+size = 30;
+figure
+subplot(1,3,1)
+scatter(normalize1,normalize2,size,y);
+title('Feature 1 vs. Feature 2');
+xlabel('Feature 1 Value');
+ylabel('Feature 2 Value');
+subplot(1,3,2)
+scatter(normalize1,normalize3,size,y);
+title('Feature 1 vs. Feature 3');
+xlabel('Feature 1 Value');
+ylabel('Feature 3 Value');
+subplot(1,3,3)
+scatter(normalize1,normalize4,size,y);
+title('Feature 1 vs. Feature 4');
+xlabel('Feature 1 Value');
+ylabel('Feature 4 Value');
+\end{verbatim}
 
 \end{document}
 
