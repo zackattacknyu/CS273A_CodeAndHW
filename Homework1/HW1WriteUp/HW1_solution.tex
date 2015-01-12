@@ -528,6 +528,45 @@ The contours of the Gaussian plot are shown below\\
 \caption{Scatter Plot of features and class labels with contours for Gaussian}
 \end{figure}
 
+\newpage
+
+\subsection*{Problem 4, Part d code}
+
+Here is the plot of the boundaries and contours of the Gaussian classifier
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\columnwidth]{prob4dPlot.jpg}
+\caption{Scatter Plot of features and class labels with boundaries of Gaussian classifier}
+\end{figure}
+
+\newpage
+
+\subsection*{Problem 4, Part b,c,d code}
+
+Here is the code to make the plots for part b,c,and d
+\begin{verbatim}
+%%
+%Part B
+size = 30;
+figure
+scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
+
+%Part C
+figure
+hold on
+scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
+plotGauss2D(XtrMeanClass0,XtrCovClass0,'b-');
+plotGauss2D(XtrMeanClass1,XtrCovClass1,'g-');
+plotGauss2D(XtrMeanClass2,XtrCovClass2,'y-');
+hold off
+
+%Part D
+bc = gaussBayesClassify( XtrFirstTwo, Ytr );
+figure
+plotClassify2D(bc, XtrFirstTwo, Ytr);
+\end{verbatim}
+
 \end{document}
 
 
