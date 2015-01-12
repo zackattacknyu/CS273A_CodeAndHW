@@ -334,6 +334,96 @@ for i = 1:5
 end
 \end{verbatim}
 
+\subsection*{Problem 3, Part b}
+
+With $x=(0,0,0,0,0)$ it holds that \\
+$p(y=1)=0.8351$\\
+$p(y=-1)=0.1649$\\
+Thus $y=1$ is the predicted classification.\\
+\\
+With $x=(1,1,0,1,0)$ it holds that \\
+$p(y=1)=0$ \\
+$p(y=-1)=1$ \\
+Thus $y=-1$ is the predicted classification.\\
+
+\subsection*{Problem 3, Part c}
+
+The values showed in my answer for part b are the normalized values, thus \\
+$p(y=1)=0$ for $x=(1,1,0,1,0)$ as noted previously.
+
+\subsection*{Problem 3, Part b and c code}
+
+Here is the code that I used to compute the values in part b and c. \\
+This is a continuation of the code from part a.
+
+\begin{verbatim}
+%part B
+%Using Naive Bayes, p(y|x) = p(x|y)p(y)/p(x)
+%   p(x) = sum_y( p(x|y)p(y) )
+%   p(x|y)=p(x_1|y)p(x_2|y)...p(x_5|y)
+
+%We need to find the y prob of x=(0 0 0 0 0)
+xTest1 = [0 0 0 0 0];
+[probY1withXtest1,probYminus1withXtest1] = prob3Classifier(probXwhereY1,probXwhereYminus1,probY1,probYminus1,xTest1);
+
+bestYclassification1 = 1;
+if(probY1withXtest1<probYminus1withXtest1)
+    bestYclassification1 = -1; 
+end
+
+xTest2 = [1 1 0 1 0];
+[probY1withXtest2,probYminus1withXtest2] = prob3Classifier(probXwhereY1,probXwhereYminus1,probY1,probYminus1,xTest2);
+
+bestYclassification2 = 1;
+if(probY1withXtest2<probYminus1withXtest2)
+    bestYclassification2 = -1; 
+end
+
+%part C
+probY1withXtest2
+\end{verbatim}
+
+\newpage
+
+I wrote a function called {\it prob3Classifier} that used the classifier made in part a \\
+and computed the posterior probabilities. Here is the code for it:
+
+\begin{verbatim}
+function [ probY1withXtest1,probYminus1withXtest1 ] = prob3Classifier( 
+probXwhereY1,probXwhereYminus1, probY1, probYminus1,xTest1 )
+%PROB3CLASSIFIER says the probabilities of the classifications of the test
+%               data
+% Input is the following matrices:
+%   probXwhereY1:
+%       row i has probabilities for x_i
+%       column 1 is p(x_i=0|y=1)
+%       column 2 is p(x_i=1|y=1)
+%   probXwhereYminus1:
+%       row i has probabilities for x_i
+%       column 1 is p(x_i=0|y=-1)
+%       column 2 is p(x_i=1|y=-1)
+%
+%probY1withXtest1 is p(y=1|x) where x is the test vector
+%probYminus1withXtest1 is p(y=-1|x) where x is the test vector
+
+probXtestWhereY1 = zeros(1,5);
+probXtestWhereYminus1 = zeros(1,5);
+for i = 1:5
+   probXtestWhereY1(i) = probXwhereY1(i,xTest1(i)+1); 
+   probXtestWhereYminus1(i) = probXwhereYminus1(i,xTest1(i)+1); 
+end
+probXtestWithY1 = prod(probXtestWhereY1)*probY1;
+probXtestWithYminus1 = prod(probXtestWhereYminus1)*probYminus1;
+
+%finally here is p(y=1|x)
+probY1withXtest1 = probXtestWithY1/(probXtestWithY1+probXtestWithYminus1);
+
+%here is p(y=-1|x)
+probYminus1withXtest1 = probXtestWithYminus1/(probXtestWithY1+probXtestWithYminus1);
+
+end
+\end{verbatim}
+
 \end{document}
 
 
