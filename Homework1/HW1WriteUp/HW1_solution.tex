@@ -424,6 +424,14 @@ probYminus1withXtest1 = probXtestWithYminus1/(probXtestWithY1+probXtestWithYminu
 end
 \end{verbatim}
 
+\newpage
+
+\subsection*{Problem 3, part d}
+
+We have 5 features with 2 values each, so if we want a Bayes classifier then there are $2^5=32$ feature vectors which we would need to find classification probabilities for. We only have 10 observations meaning that not all the feature vectors have a classification probability. We thus would not have a trained Bayes classifier and there could be input values that it could not compute a probability for.\\
+\\
+Another issue with using a Bayes classifier is that each row is unique so the probability for each class given a feature vector would simply be 0 or 1 which is likely not accurate.
+
 \end{document}
 
 

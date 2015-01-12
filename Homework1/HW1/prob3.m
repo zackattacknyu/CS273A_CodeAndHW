@@ -65,7 +65,7 @@ xTest2 = [1 1 0 1 0];
 [probY1withXtest2,probYminus1withXtest2] = prob3Classifier(probXwhereY1,probXwhereYminus1,probY1,probYminus1,xTest2);
 
 bestYclassification2 = 1;
-if(probY1withXtest1<probYminus1withXtest1)
+if(probY1withXtest2<probYminus1withXtest2)
     bestYclassification2 = -1; 
 end
 
