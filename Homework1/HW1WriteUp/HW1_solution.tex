@@ -567,6 +567,52 @@ figure
 plotClassify2D(bc, XtrFirstTwo, Ytr);
 \end{verbatim}
 
+\subsection*{Problem 4, Part e}
+
+The training error rate ends up being $0.2252$\\
+The test error rate ends up being $0.1081$\\
+\\
+This is the code I used to calculate that. It is a continuation of the code from previous parts of this problem:
+\begin{verbatim}
+%Part E
+yTrHat = predict(bc,XtrFirstTwo);
+trainError = length(find(yTrHat~=Ytr))/length(Ytr);
+
+yTeHat = predict(bc,XteFirstTwo);
+testError = length(find(yTeHat~=Yte))/length(Yte);
+\end{verbatim}
+
+\newpage
+
+\subsection*{Problem 4, Part f}
+
+For this problem, the training error rate ends up being $0.0270$\\
+The test error rate ends up being $0$\\
+\\
+Here is the code I used to calculate that\\
+It only needs the code at the beginning that obtained {\it Xtr} and {\it Ytr}
+\begin{verbatim}
+XtrAllClass0 = Xtr(Ytr0Indices,:);
+XtrAllClass1 = Xtr(Ytr1Indices,:);
+XtrAllClass2 = Xtr(Ytr2Indices,:);
+
+XtrAllMeanClass0 = mean(XtrAllClass0);
+XtrAllMeanClass1 = mean(XtrAllClass1);
+XtrAllMeanClass2 = mean(XtrAllClass2);
+
+XtrAllCovClass0 = cov(XtrAllClass0);
+XtrAllCovClass1 = cov(XtrAllClass1);
+XtrAllCovClass2 = cov(XtrAllClass2);
+
+bcTrAll = gaussBayesClassify( Xtr, Ytr );
+yTrAllHat = predict(bcTrAll,Xtr);
+trainErrorAll = length(find(yTrAllHat~=Ytr))/length(Ytr);
+
+yTeAllHat = predict(bcTrAll,Xte);
+testErrorAll = length(find(yTeAllHat~=Yte))/length(Yte);
+\end{verbatim}
+
+
 \end{document}
 
 
