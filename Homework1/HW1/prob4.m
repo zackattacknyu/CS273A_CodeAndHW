@@ -1,3 +1,4 @@
+%%
 %InitialPart
 iris=load('data/iris.txt'); 
 y=iris(:,end); 
@@ -31,11 +32,19 @@ XtrCovClass0 = cov(XtrClass0);
 XtrCovClass1 = cov(XtrClass1);
 XtrCovClass2 = cov(XtrClass2);
 
+%%
 %Part B
 size = 30;
+Xtr1 = XtrFirstTwo(:,1);
+Xtr2 = XtrFirstTwo(:,2);
 figure
-scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
+hold all
+plot(Xtr1(Ytr==0),Xtr2(Ytr==0),'o');
+plot(Xtr1(Ytr==1),Xtr2(Ytr==1),'o');
+plot(Xtr1(Ytr==2),Xtr2(Ytr==2),'o');
+legend('y=0','y=1','y=2','Location','SouthEast');
 
+%%
 %Part C
 figure
 hold on
