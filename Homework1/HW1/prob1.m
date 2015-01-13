@@ -63,21 +63,31 @@ plot(normalize1(y==0),normalize2(y==0),'o');
 hold all
 plot(normalize1(y==1),normalize2(y==1),'o');
 plot(normalize1(y==2),normalize2(y==2),'o');
-legend('0','1','2');
+legend('y=0','y=1','y=2','Location','SouthEast');
 title('Feature 1 vs. Feature 2');
 xlabel('Feature 1 Value');
 ylabel('Feature 2 Value');
 hold off
 subplot(1,3,2)
-scatter(normalize1,normalize3,size,y);
+plot(normalize1(y==0),normalize3(y==0),'o');
+hold all
+plot(normalize1(y==1),normalize3(y==1),'o');
+plot(normalize1(y==2),normalize3(y==2),'o');
+legend('y=0','y=1','y=2','Location','SouthEast');
 title('Feature 1 vs. Feature 3');
 xlabel('Feature 1 Value');
 ylabel('Feature 3 Value');
+hold off
 subplot(1,3,3)
-scatter(normalize1,normalize4,size,y);
+plot(normalize1(y==0),normalize4(y==0),'o');
+hold all
+plot(normalize1(y==1),normalize4(y==1),'o');
+plot(normalize1(y==2),normalize4(y==2),'o');
+legend('y=0','y=1','y=2','Location','SouthEast');
 title('Feature 1 vs. Feature 4');
 xlabel('Feature 1 Value');
 ylabel('Feature 4 Value');
+hold off
 
 
 
