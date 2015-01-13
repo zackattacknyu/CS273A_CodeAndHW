@@ -59,10 +59,15 @@ normalize4 = (feature4-mean4)/std4;
 size = 30;
 figure
 subplot(1,3,1)
-scatter(normalize1,normalize2,size,y);
+plot(normalize1(y==0),normalize2(y==0),'o');
+hold all
+plot(normalize1(y==1),normalize2(y==1),'o');
+plot(normalize1(y==2),normalize2(y==2),'o');
+legend('0','1','2');
 title('Feature 1 vs. Feature 2');
 xlabel('Feature 1 Value');
 ylabel('Feature 2 Value');
+hold off
 subplot(1,3,2)
 scatter(normalize1,normalize3,size,y);
 title('Feature 1 vs. Feature 3');
