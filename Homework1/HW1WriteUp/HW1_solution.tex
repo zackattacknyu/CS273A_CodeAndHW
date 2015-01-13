@@ -240,7 +240,7 @@ end
 
 \subsection*{Problem 2, Part b}
 
-Here is the training error (in Red) and the test error (in green) as the value of K increases. \\
+Here is the training error and the test error as the value of K increases. \\
 Based on this plot, I would recommend $K=50$
 
 \begin{figure}[H]
@@ -268,10 +268,10 @@ for i=1:length(Kvals)
     errTest(i)=length(find(YhatTe~=Yte))/length(Yte);
 end;
 figure
+semilogx(Kvals,errTrain,'r-');
 hold on
-semilogx(Kvals,errTrain,'-','LineWidth',2,'Color','red');
-semilogx(Kvals,errTest,'-','LineWidth',2,'Color','green');
-hold off
+semilogx(Kvals,errTest,'g-');
+legend('Training Error','Test Error','Location','SouthEast');
 \end{verbatim}
 
 \newpage
@@ -286,7 +286,7 @@ $p(y=-1) = 0.6$\\
 \\
 The feature probabilites are as follows:\\
 \begin{tabular}{ l | c | c | c | c}
-  i   & $p(x_i=0|y=1)$ & $p(x_i=1|y=1)$ & $p(x_i=0|y=1)$ & $p(x_i=1|y=1)$\\
+  i   & $p(x_i=0|y=1)$ & $p(x_i=1|y=1)$ & $p(x_i=0|y=-1)$ & $p(x_i=1|y=-1)$\\
 \hline
   1 & 0.25 & 0.75 & 0.5 & 0.5 \\
   2 & 1&0 & 0.1667 & 0.8333\\
@@ -446,7 +446,7 @@ end
 
 We have 5 features with 2 values each, so if we want a Bayes classifier then there are $2^5=32$ feature vectors which we would need to find classification probabilities for. We only have 10 observations meaning that not all the feature vectors have a classification probability. We thus would not have a trained Bayes classifier and there could be input values that it could not compute a probability for.\\
 \\
-Another issue with using a Bayes classifier is that each row is unique so the probability for each class given a feature vector would simply be 0 or 1 which is likely not accurate.
+Another issue with using a Bayes classifier is that each row is unique in this set of data so the probability for each class given a feature vector would simply be 1 or -1 which is likely not accurate.
 
 \newpage
 

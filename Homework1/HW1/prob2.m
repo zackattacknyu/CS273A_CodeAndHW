@@ -1,3 +1,4 @@
+%%
 %InitialPart
 iris=load('data/iris.txt'); 
 y=iris(:,end); 
@@ -10,6 +11,7 @@ X=iris(:,1:end-1);
 XtrFirstTwo = Xtr(:,1:2);
 XteFirstTwo = Xte(:,1:2);
 
+%%
 %partA
 figure
 Kvals = [1,5,10,50];
@@ -24,7 +26,7 @@ for i=1:4
    plotClassify2D( knn, XtrFirstTwo, Ytr );
    title(strcat('K=',num2str(K),' classification plot'));
 end
-
+%%
 %part B
 Kvals=[1,2,5,10,50,100,200];
 errTrain=zeros(1,length(Kvals));
@@ -38,9 +40,9 @@ for i=1:length(Kvals)
     YhatTe = predict(learner,XteFirstTwo);
     errTest(i)=length(find(YhatTe~=Yte))/length(Yte);
 end;
-figure
-hold on
-semilogx(Kvals,errTrain,'-','LineWidth',2,'Color','red');
-semilogx(Kvals,errTest,'-','LineWidth',2,'Color','green');
-hold off
 
+figure
+semilogx(Kvals,errTrain,'r-');
+hold on
+semilogx(Kvals,errTest,'g-');
+legend('Training Error','Test Error','Location','SouthEast');
