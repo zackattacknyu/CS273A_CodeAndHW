@@ -47,13 +47,17 @@ legend('y=0','y=1','y=2','Location','SouthEast');
 %%
 %Part C
 figure
-hold on
-scatter(XtrFirstTwo(:,1),XtrFirstTwo(:,2),size,Ytr);
+hold all
+plot(Xtr1(Ytr==0),Xtr2(Ytr==0),'o');
+plot(Xtr1(Ytr==1),Xtr2(Ytr==1),'o');
+plot(Xtr1(Ytr==2),Xtr2(Ytr==2),'o');
+legend('y=0','y=1','y=2','Location','SouthEast');
 plotGauss2D(XtrMeanClass0,XtrCovClass0,'b-');
 plotGauss2D(XtrMeanClass1,XtrCovClass1,'g-');
-plotGauss2D(XtrMeanClass2,XtrCovClass2,'y-');
+plotGauss2D(XtrMeanClass2,XtrCovClass2,'r-');
 hold off
 
+%%
 %Part D
 bc = gaussBayesClassify( XtrFirstTwo, Ytr );
 figure
