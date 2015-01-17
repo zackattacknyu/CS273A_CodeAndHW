@@ -16,6 +16,7 @@ plot(xs,ys)
 hold on
 plot(Xtr,Ytr,'rx')
 plot(Xte,Yte,'g.')
+legend('Prediction','Training Data','Test Data','Location','SouthEast');
 
 %calculate MSE
 YhatTr = predict(lr,Xtr); %gets predicted y for training data
