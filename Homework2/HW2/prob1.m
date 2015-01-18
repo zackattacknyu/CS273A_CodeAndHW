@@ -50,6 +50,10 @@ hold on
 plot(Xtr,Ytr,'g.');
 plot(Xte,Yte,'rx');
 
+%now get the training and test error
+YtrError = sum((YhatTrain-Ytr).^2)/length(Ytr);
+YteError = sum((YhatTest-Yte).^2)/length(Yte);
+
 
 
 
