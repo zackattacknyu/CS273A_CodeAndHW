@@ -27,32 +27,60 @@ mseTe = sum(abs(YhatTe-Yte).^2);
 %%
 %Part C
 
-%Xtr2 = [Xtr, Xtr.^2];
+degs = [1 3 5 7 10 18];
+YtrError = zeros(1,length(degs));
+YteError = zeros(1,length(degs));
+xs = (min(X):.05:max(X))'; % densely sample possible x-values
 
-degree=3;
-% create poly features up to given degree; no "1" feature
-XtrP = fpoly(Xtr, degree, false); 
-
-[XtrP, M,S] = rescale(XtrP); % it's often a good idea to scale the features
-lr = linearRegress( XtrP, Ytr ); % create and train model
-
-% defines an "implicit function" Phi(x)
-Phi = @(x) rescale( fpoly(x,degree,false), M,S); 
-
-% parameters "degree", "M", and "S" are memorized at the function definition
-% Now, Phi will do the required feature expansion and rescaling:
-YhatTrain = predict( lr, Phi(Xtr) ); % predict on training data
-YhatTest = predict(lr, Phi(Xte) ); 
-xs = (0:.05:10)'; % densely sample possible x-values
-ys = predict( lr, Phi(xs) ); % make predictions at xs
-plot(xs,ys)
-hold on
+figure
 plot(Xtr,Ytr,'g.');
-plot(Xte,Yte,'rx');
+hold on
+plot(Xte,Yte,'rx'); 
+ax = axis;
 
-%now get the training and test error
-YtrError = sum((YhatTrain-Ytr).^2)/length(Ytr);
-YteError = sum((YhatTest-Yte).^2)/length(Yte);
+for i = 1:length(degs)
+    
+    degree = degs(i);
+    
+   % create poly features up to given degree; no "1" feature
+    XtrP = fpoly(Xtr, degree, false); 
+
+    [XtrP, M,S] = rescale(XtrP); % it's often a good idea to scale the features
+    lr = linearRegress( XtrP, Ytr ); % create and train model
+
+    % defines an "implicit function" Phi(x)
+    Phi = @(x) rescale( fpoly(x,degree,false), M,S); 
+
+    % parameters "degree", "M", and "S" are memorized at the function definition
+    % Now, Phi will do the required feature expansion and rescaling:
+    YhatTrain = predict( lr, Phi(Xtr) ); % predict on training data
+    YhatTest = predict(lr, Phi(Xte) ); 
+    
+    ys = predict( lr, Phi(xs) ); % make predictions at xs
+    plot(xs,ys)
+    axis(ax)
+    
+    %now get the training and test error
+    YtrError(i) = sum((YhatTrain-Ytr).^2)/length(Ytr);
+    YteError(i) = sum((YhatTest-Yte).^2)/length(Yte);
+    
+end
+
+%creates the legend for the f(x) plots
+%   degs = [1 3 5 7 10 18];
+legend('Training Error','Test Error','f(x), Degree 1','f(x), Degree 3',...
+    'f(x), Degree 5','f(x), Degree 7','f(x), Degree 10','f(x), Degree 18',...
+    'Location','Northwest');
+
+%creates the training and test error plots
+figure
+semilogy(degs,YtrError);
+hold on
+semilogy(degs,YteError);
+legend('Training Error','Test Error','Location','Northwest');
+
+
+
 
 
 
