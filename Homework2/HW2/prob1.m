@@ -27,7 +27,8 @@ mseTe = mean(abs(YhatTe-Yte).^2);
 %%
 %Part C
 
-degs = [1 3 5 7 10 18];
+%degs = [1 3 5 7 10 18];
+degs = [10 18];
 YtrError = zeros(1,length(degs));
 YteError = zeros(1,length(degs));
 xs = (min(X):.05:max(X))'; % densely sample possible x-values
@@ -54,7 +55,7 @@ for i = 1:length(degs)
     
     ys = predict( lr, Phi(xs) ); % make predictions at xs
     
-    subplot(3,2,i)
+    subplot(1,2,i)
     plot(Xtr,Ytr,'g.','MarkerSize',10);
     hold on
     plot(Xte,Yte,'rx','MarkerSize',10); 
