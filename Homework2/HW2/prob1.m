@@ -35,10 +35,6 @@ YteError = zeros(1,length(degs));
 xs = (min(X):.05:max(X))'; % densely sample possible x-values
 
 figure
-plot(Xtr,Ytr,'g.');
-hold on
-plot(Xte,Yte,'rx'); 
-ax = axis;
 
 for i = 1:length(degs)
     
@@ -59,8 +55,15 @@ for i = 1:length(degs)
     YhatTest = predict(lr, Phi(Xte) ); 
     
     ys = predict( lr, Phi(xs) ); % make predictions at xs
+    
+    subplot(3,2,i)
+    plot(Xtr,Ytr,'g.');
+    hold on
+    plot(Xte,Yte,'rx'); 
     plot(xs,ys)
-    axis(ax)
+    axis([0 10 -2 7]);
+    title(strcat('f(x) degree=',num2str(degree)));
+    hold off
     
     %now get the training and test error
     YtrError(i) = sum((YhatTrain-Ytr).^2)/length(Ytr);
@@ -70,9 +73,9 @@ end
 
 %creates the legend for the f(x) plots
 %   degs = [1 3 5 7 10 18];
-legend('Training Error','Test Error','f(x), Degree 1','f(x), Degree 3',...
-    'f(x), Degree 5','f(x), Degree 7','f(x), Degree 10','f(x), Degree 18',...
-    'Location','Northwest');
+%legend('Training Error','Test Error','f(x), Degree 1','f(x), Degree 3',...
+%    'f(x), Degree 5','f(x), Degree 7','f(x), Degree 10','f(x), Degree 18',...
+%    'Location','Northwest');
 
 %creates the training and test error plots
 figure
