@@ -14,15 +14,15 @@ ys = predict( lr, xs ); % make predictions at xs
 
 plot(xs,ys)
 hold on
-plot(Xtr,Ytr,'rx')
-plot(Xte,Yte,'g.')
-legend('Prediction','Training Data','Test Data','Location','SouthEast');
+plot(Xtr,Ytr,'g.','MarkerSize',10)
+%plot(Xte,Yte,'rx','MarkerSize',10)
+legend('Prediction','Training Data','Location','SouthEast');
 
 %calculate MSE
 YhatTr = predict(lr,Xtr); %gets predicted y for training data
 YhatTe = predict(lr,Xte); %gets predicted y for test data
-mseTr = sum(abs(YhatTr-Ytr).^2);
-mseTe = sum(abs(YhatTe-Yte).^2);
+mseTr = mean(abs(YhatTr-Ytr).^2);
+mseTe = mean(abs(YhatTe-Yte).^2);
 
 %%
 %Part C
