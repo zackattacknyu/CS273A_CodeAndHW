@@ -28,8 +28,6 @@ mseTe = mean(abs(YhatTe-Yte).^2);
 %Part C
 
 degs = [1 3 5 7 10 18];
-%degs = [1 3 5];
-%degs = [7 10 18];
 YtrError = zeros(1,length(degs));
 YteError = zeros(1,length(degs));
 xs = (min(X):.05:max(X))'; % densely sample possible x-values
@@ -57,9 +55,9 @@ for i = 1:length(degs)
     ys = predict( lr, Phi(xs) ); % make predictions at xs
     
     subplot(3,2,i)
-    plot(Xtr,Ytr,'g.');
+    plot(Xtr,Ytr,'g.','MarkerSize',10);
     hold on
-    plot(Xte,Yte,'rx'); 
+    plot(Xte,Yte,'rx','MarkerSize',10); 
     plot(xs,ys)
     axis([0 10 -2 7]);
     title(strcat('f(x) degree=',num2str(degree)));
@@ -70,12 +68,6 @@ for i = 1:length(degs)
     YteError(i) = sum((YhatTest-Yte).^2)/length(Yte);
     
 end
-
-%creates the legend for the f(x) plots
-%   degs = [1 3 5 7 10 18];
-%legend('Training Error','Test Error','f(x), Degree 1','f(x), Degree 3',...
-%    'f(x), Degree 5','f(x), Degree 7','f(x), Degree 10','f(x), Degree 18',...
-%    'Location','Northwest');
 
 %creates the training and test error plots
 figure
