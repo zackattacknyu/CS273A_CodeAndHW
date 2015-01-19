@@ -9,10 +9,11 @@ crossValidError = zeros(1,length(degs));
 
 nFolds = 5;
 J = zeros(1,nFolds);
+Jvals = zeros(nFolds,length(degs));
 
-for j=1:length(degs)
+for k=1:length(degs)
     
-    degree = degs(j);
+    degree = degs(k);
     
     for iFold = 1:nFolds,
 
@@ -31,11 +32,12 @@ for j=1:length(degs)
         % Now, Phi will do the required feature expansion and rescaling:
         YhatTest = predict(lr, Phi(Xvi) );
 
-        J(iFold) = sum((YhatTest-Yvi).^2)/length(Yvi);
+        J(iFold) = mean((YhatTest-Yvi).^2);
+        Jvals(iFold,k) = J(iFold);
     end;
     
     % the overall estimated validation performance is the average of the performance on each fold
-    crossValidError(j) = mean(J);
+    crossValidError(k) = mean(J);
 end
 
 semilogy(degs,crossValidError);
