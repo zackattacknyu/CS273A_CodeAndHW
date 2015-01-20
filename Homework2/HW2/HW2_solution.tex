@@ -123,23 +123,22 @@ This is the code used to accomplish these plots. It is a continuation of the cod
 
 \section*{Problem 2}
 
-This is the plot. As can be observed, the minimum average MSE occurs where $degree=7$. \\
+This is the plot. As can be observed, the minimum average MSE occurs where $degree=5$. \\
 \begin{figure}[h]
 \centering
-\includegraphics[width=5 in]{prob2Plot.jpg}
+\includegraphics[width=\columnwidth]{prob2Plot.png}
 \caption{The average cross-validation MSE as function of polynomial degree}
 \end{figure}
-The average cross-validation MSE for the degree 7 polynomial was $0.5138$.\\
-The test error for the degree 7 polynomial in problem 2 was $0.6502$.\\
-Therefore using cross-validation reduced the test error slightly.\\
 \\
-Using cross-validation also changed which polynomial degree had the least test error. \\
-In problem 2, the degree 10 polynomial had the least test error whereas in problem 3, \\
-the degree 7 polynomial performed the best. \\
+The cross-validation error with degree 5 was $0.5911$. \\
+The error for the degree 5 polynomial on actual test data was $1.0344$ in the previous problem. \\
+Therefore using cross-validation reduced the error that we saw.\\
+\\
+It also changed which degree polynomial had the lowest error. On the actual test data, the degree 10 polynomial had the lowest error with an average MSE of $0.6091$.
 \\
 \newpage
 Here is the code that I used to get the numbers and the plot for problem 3
-\lstinputlisting[firstline=1, lastline=43]{prob2.m}
+\lstinputlisting[firstline=1, lastline=40]{prob2.m}
 
 
 \end{document}
