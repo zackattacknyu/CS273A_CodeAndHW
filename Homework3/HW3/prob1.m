@@ -14,7 +14,9 @@ figure
 plot(X0,'r.');
 hold on
 plot(X1,'gx');
+%plot(X2,'bo');
 hold off
+
 
 figure
 plot(X1,'r.');
