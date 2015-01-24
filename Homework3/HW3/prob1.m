@@ -10,14 +10,15 @@ X0 = X(Y==0,:); Y0=Y(Y==0);
 X1 = X(Y==1,:); Y1=Y(Y==1);
 X2 = X(Y==2,:); Y2=Y(Y==2);
 
+%%
 figure
-plot(X0,'r.');
+plot(X0(:,1),X0(:,2),'r.');
 hold on
-plot(X1,'gx');
-%plot(X2,'bo');
+plot(X1(:,1),X1(:,2),'gx');
+%plot(X2(:,1),X2(:,2),'bo');
 hold off
 
-
+%%
 figure
 plot(X1,'r.');
 hold on
