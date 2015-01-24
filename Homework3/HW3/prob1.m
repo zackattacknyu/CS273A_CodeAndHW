@@ -14,6 +14,7 @@ figure
 plot(X0(:,1),X0(:,2),'r.');
 hold on
 plot(X1(:,1),X1(:,2),'gx');
+legend('Class 0','Class 1');
 hold off
 
 %plot class 1 and class 2
@@ -21,4 +22,5 @@ figure
 plot(X1(:,1),X1(:,2),'gx');
 hold on
 plot(X2(:,1),X2(:,2),'bo');
+legend('Class 1','Class 2','Location','SouthEast');
 hold off
