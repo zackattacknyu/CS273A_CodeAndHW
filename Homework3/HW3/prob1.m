@@ -42,3 +42,8 @@ learnerB=setWeights(learnerB, wts);
 %plot the data and the decision boundary
 plot2DLinear(learnerA,XA,YA);
 plot2DLinear(learnerB,XB,YB);
+
+%%
+%part C
+
+Yte = predict(learnerA,XA);
