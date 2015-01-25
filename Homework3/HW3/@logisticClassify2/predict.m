@@ -10,7 +10,7 @@ end
 yhat = sign(yhat);
 
 % (2) convert predictions to saved classes: Yte = obj.classes( [1 or 2] );
-Yte = ones(1,length(yhat));
+Yte = ones(length(yhat),1);
 for i = 1:length(Yte)
    if(yhat(i) == -1)
       Yte(i) = obj.classes(1); 

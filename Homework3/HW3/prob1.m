@@ -46,4 +46,10 @@ plot2DLinear(learnerB,XB,YB);
 %%
 %part C
 
-Yte = predict(learnerA,XA);
+%get the predicted class labels for A and B
+YhatA = predict(learnerA,XA);
+YhatB = predict(learnerB,XB);
+
+%get the error rate
+errorA = length(find(YhatA~=YA))/length(YA);
+errorB = length(find(YhatB~=YB))/length(YB);
