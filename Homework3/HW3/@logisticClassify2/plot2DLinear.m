@@ -10,7 +10,13 @@ function plot2DLinear(obj, X, Y)
   xs = min(X):0.05:max(X);
   ys = -(xs.*weights(2) + weights(1))/(weights(3));
   
-  scatter(X(:,1),X(:,2),10,Y);
+  figure
+  scatter(X(:,1),X(:,2),20,Y); %plot the data points
+  colormap winter;
+  colorbar
+  ax = axis;
   hold on
-  plot(xs,ys);
+  plot(xs,ys); %plot the decision boundary line
+  axis(ax) %make sure the axis still is just the points
+  hold off
   

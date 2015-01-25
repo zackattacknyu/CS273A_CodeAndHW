@@ -26,23 +26,25 @@ legend('Class 1','Class 2','Location','SouthEast');
 hold off
 
 %%
+%Part B
 XA = X(Y<2,:); YA=Y(Y<2); % get class 0 vs 1
 XB = X(Y>0,:); YB=Y(Y>0); % get class 1 vs 2
 
-xs = min(XA):0.05:max(XA);
-ys = xs.*4 + 2; %decision boundary specified in part b
-%scatter(XA(:,1),XA(:,2),10,YA);
-%scatter(XB(:,1),XB(:,2),10,YB);
-%hold on
-%plot(xs,ys)
+%weights to demo for part b
+wts = [0.5 1 -0.25];
 
-theta0 = 0.5;
-theta1 = 1;
-theta2 = -0.25;
+%define the two learners we will use
+learnerA=logisticClassify2();
+learnerB=logisticClassify2();
 
-learner=logisticClassify2(); % create "blank" learner
-learner=setClasses(learner, unique(YA)); % define class labels using YA or YB
-wts = [theta0 theta1 theta2]; % TODO: fill in values
-learner=setWeights(learner, wts); % set the learner's parameters
+%set the class labels for our learners
+learnerA=setClasses(learnerA, unique(YA));
+learnerB=setClasses(learnerB, unique(YB));
 
-plot2DLinear(learner,XA,YA);
+%sets the weights for both learners
+learnerA=setWeights(learnerA, wts);
+learnerB=setWeights(learnerB, wts);
+
+%plot the data and the decision boundary
+plot2DLinear(learnerA,XA,YA);
+plot2DLinear(learnerB,XB,YB);
