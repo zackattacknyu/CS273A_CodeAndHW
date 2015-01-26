@@ -115,6 +115,21 @@ Here is the code for predict.m
 Here is the code to compute the error rates for part C. It relies on the code for Part B.
 \lstinputlisting[firstline=46, lastline=55]{prob1.m}
 
+\subsection*{Part d}
 
+An individual derivative is as follows:
+\[
+J_j'(\theta_i) = (1-y^{(j)})\theta_i x_i^{(j)} - \frac{exp(-z)\theta_i x_i^{(j)}}{1+exp(-z)} + 2 \alpha \theta_i
+\]
+
+\section*{Problem 2}
+
+\subsection*{Part a}
+
+It can separate the points in a,b, and c, but you can arrange the points in d such that this won't separate them. The VC dimension is thus 3.
+
+\subsection*{Part b}
+
+It can separate the points in a,b,c, and d, so the VC dimension is 4.
 
 \end{document}

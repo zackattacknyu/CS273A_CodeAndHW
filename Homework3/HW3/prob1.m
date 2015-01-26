@@ -53,3 +53,7 @@ YhatB = predict(learnerB,XB);
 %get the error rate
 errorA = length(find(YhatA~=YA))/length(YA);
 errorB = length(find(YhatB~=YB))/length(YB);
+
+%%
+%Part E
+
