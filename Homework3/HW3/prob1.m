@@ -61,6 +61,11 @@ theta = [0.5 1 -0.25];
 alpha = 0;
 stepSize = 0.1;
 
+%define the learner used for plotting
+learnerGradDesc=logisticClassify2();
+learnerGradDesc=setClasses(learnerGradDesc, unique(YA));
+
+
 for j = 1:length(YA)
     
    %data that depends on our particular point
@@ -79,5 +84,9 @@ for j = 1:length(YA)
     %do the gradient step
     theta = theta - JjPrime.*stepSize; 
     
+    %replot the data
+    learnerGradDesc=setWeights(learnerGradDesc, theta);
+    plot2DLinear(learnerGradDesc,XA,YA);
+    pause(1);
 end
 
