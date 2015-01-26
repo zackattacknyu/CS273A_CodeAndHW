@@ -59,6 +59,7 @@ errorB = length(find(YhatB~=YB))/length(YB);
 
 theta = [0.5 1 -0.25];
 alpha = 0;
+stepSize = 0.1;
 j=3;
 
 %data that depends on our particular point
@@ -67,10 +68,13 @@ xj = [1 X(j,:)];
 zValue = dot(theta,xj);
 expZ = exp(-zValue);
 
-%what now depends on each parameter and feature
+%calculate J'
 JjPrime = zeros(1,length(theta));
 for i = 1:length(theta)
     JjPrime(i) = (1-yj)*xj(i)*theta(i) - expZ*xj(i)*theta(i)/(1+expZ) ...
         + 2*theta(i)*alpha;
 end
+
+%do the gradient step
+theta = theta - JjPrime.*stepSize;
 
