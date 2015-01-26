@@ -10,7 +10,7 @@ function plot2DLinear(obj, X, Y)
   xs = min(X):0.05:max(X);
   ys = -(xs.*weights(2) + weights(1))/(weights(3));
   
-  figure
+  %figure
   scatter(X(:,1),X(:,2),20,Y); %plot the data points
   colormap winter;
   colorbar

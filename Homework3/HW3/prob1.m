@@ -40,7 +40,9 @@ learnerA=setWeights(learnerA, wts);
 learnerB=setWeights(learnerB, wts);
 
 %plot the data and the decision boundary
+figure
 plot2DLinear(learnerA,XA,YA);
+figure
 plot2DLinear(learnerB,XB,YB);
 
 %%
@@ -58,7 +60,7 @@ errorB = length(find(YhatB~=YB))/length(YB);
 %Part E
 
 theta = [0.5 1 -0.25];
-alpha = 0;
+alpha = 0.2;
 stepSize = 0.1;
 
 %define the learner used for plotting
@@ -87,6 +89,8 @@ for j = 1:length(YA)
     %replot the data
     learnerGradDesc=setWeights(learnerGradDesc, theta);
     plot2DLinear(learnerGradDesc,XA,YA);
-    pause(1);
+    
+    %pause to see the new weights
+    pause(0.2);
 end
 
