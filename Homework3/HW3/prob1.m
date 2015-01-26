@@ -79,7 +79,7 @@ for j = 1:length(YA)
     %calculate J'
     JjPrime = zeros(1,length(theta));
     for i = 1:length(theta)
-        JjPrime(i) = (1-yj)*xj(i)*theta(i) - expZ*xj(i)*theta(i)/(1+expZ) ...
+        JjPrime(i) = (1-yj)*xj(i) - expZ*xj(i)/(1+expZ) ...
             + 2*theta(i)*alpha;
     end
 
