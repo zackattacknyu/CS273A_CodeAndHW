@@ -57,3 +57,15 @@ errorB = length(find(YhatB~=YB))/length(YB);
 %%
 %Part E
 
+wts = [0.5 1 -0.25];
+j=3;
+i=1;
+yj = Y(j);
+thetaI = wts(i);
+xj = [1 X(j,:)];
+zValue = dot(wts,xj);
+expZ = exp(-zValue);
+xij = xj(i);
+zValueI = xij*thetaI;
+alpha = 0;
+JjPrimeI = (1-yj)*zValueI - expZ*zValue/(1-expZ) + 2*thetaI*alpha;
