@@ -61,11 +61,11 @@ theta = [0.5 1 -0.25];
 alpha = 0;
 stepSize = 0.1;
 
-for j = 1:length(Y)
+for j = 1:length(YA)
     
    %data that depends on our particular point
-    yj = Y(j);
-    xj = [1 X(j,:)];
+    yj = YA(j);
+    xj = [1 XA(j,:)];
     zValue = dot(theta,xj);
     expZ = exp(-zValue);
 
