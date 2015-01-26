@@ -57,19 +57,20 @@ errorB = length(find(YhatB~=YB))/length(YB);
 %%
 %Part E
 
-wts = [0.5 1 -0.25];
+theta = [0.5 1 -0.25];
+alpha = 0;
 j=3;
 
 %data that depends on our particular point
 yj = Y(j);
 xj = [1 X(j,:)];
-zValue = dot(wts,xj);
+zValue = dot(theta,xj);
 expZ = exp(-zValue);
 
 %what now depends on each parameter and feature
-i=1;
-thetaI = wts(i);
-xij = xj(i);
-zValueI = xij*thetaI;
-alpha = 0;
-JjPrimeI = (1-yj)*zValueI - expZ*zValue/(1-expZ) + 2*thetaI*alpha;
+JjPrime = zeros(1,length(theta));
+for i = 1:length(theta)
+    JjPrime(i) = (1-yj)*xj(i)*theta(i) - expZ*xj(i)*theta(i)/(1+expZ) ...
+        + 2*theta(i)*alpha;
+end
+
