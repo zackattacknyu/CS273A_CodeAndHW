@@ -59,12 +59,16 @@ errorB = length(find(YhatB~=YB))/length(YB);
 
 wts = [0.5 1 -0.25];
 j=3;
-i=1;
+
+%data that depends on our particular point
 yj = Y(j);
-thetaI = wts(i);
 xj = [1 X(j,:)];
 zValue = dot(wts,xj);
 expZ = exp(-zValue);
+
+%what now depends on each parameter and feature
+i=1;
+thetaI = wts(i);
 xij = xj(i);
 zValueI = xij*thetaI;
 alpha = 0;
