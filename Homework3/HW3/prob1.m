@@ -57,64 +57,17 @@ errorA = length(find(YhatA~=YA))/length(YA);
 errorB = length(find(YhatB~=YB))/length(YB);
 
 %%
-%Part E
+
+%Part F
+%Data set A
 learnerA=logisticClassify2();
-learnerA=train(learnerA,XA,YA,'stopIter',100,'stopTol',0.0001);
+learnerA=train(learnerA,XA,YA,'stopIter',100,'stopTol',0.0000001);
+
+fig(3)
+plotClassify2D(learnerA,XA,YA)
 
 %%
-%Part E practice script
-theta = [0.5 1 -0.25];
-alpha = 0.2;
-stepSize = 0.02;
+%Data set B
+learnerB=logisticClassify2();
+learnerB=train(learnerB,XB,YB,'stopIter',100,'stopTol',0.0001);
 
-%define the learner used for plotting
-learnerGradDesc=logisticClassify2();
-learnerGradDesc=setClasses(learnerGradDesc, unique(YA));
-
-%loss values
-Jj = zeros(1,length(YA));
-minLoss = 100;
-bestTheta = theta;
-for j = 1:length(YA)
-    
-   %data that depends on our particular point
-    yj = YA(j);
-    xj = [1 XA(j,:)];
-    zValue = dot(theta,xj);
-    sigmaZ = 1/(1+exp(-zValue));
-
-    %calculate J'
-    JjPrime = zeros(1,length(theta));
-    for i = 1:length(theta)
-        JjPrime(i) = xj(i) * (sigmaZ - yj) + 2*theta(i)*alpha;
-    end
-
-    %do the gradient step
-    theta = theta - JjPrime.*stepSize;
-    
-    %find the loss function value
-    for k = 1:length(YA)
-        yk = YA(k);
-        xk = [1 XA(k,:)];
-        zValueK = dot(theta,xk);
-        sigmaZk = 1/(1+exp(-zValueK));
-        Jj(j) = Jj(j) + -yk*log(sigmaZk) + (1-yk)*log(1-sigmaZk) ...
-            + alpha*sum(theta.^2);
-    end
-    
-    if(Jj(j) < minLoss)
-       minLoss = Jj(j);
-       bestTheta = theta;
-    end
-    
-    
-    %replot the data
-    %learnerGradDesc=setWeights(learnerGradDesc, theta);
-    %plot2DLinear(learnerGradDesc,XA,YA);
-    
-    %pause to see the new weights
-    %pause(0.2);
-end
-
-learnerGradDesc=setWeights(learnerGradDesc, bestTheta);
-plot2DLinear(learnerGradDesc,XA,YA);

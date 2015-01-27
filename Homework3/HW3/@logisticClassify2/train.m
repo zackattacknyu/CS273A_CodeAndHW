@@ -75,7 +75,8 @@ while (~done)
     case 2, fig(2); plot2DLinear(obj,X,Yin);  %  for 2D data, just the data and decision boundary
     otherwise, % no plot for higher dimensions... %  higher dimensions visualization is hard
   end; end;
-  fig(1); semilogx(1:iter, Jsur(1:iter),'b-',1:iter,J01(1:iter),'g-'); drawnow;
+  fig(1); semilogx(1:iter, Jsur(1:iter),'b-',1:iter,J01(1:iter),'g-'); 
+  legend('Surrogate Loss','Error Rate');drawnow;
 
   for j=1:n,
     

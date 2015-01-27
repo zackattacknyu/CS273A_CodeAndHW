@@ -141,7 +141,23 @@ The gradient vector $\nabla J_j(\theta)$ will be as follows
 \subsection*{Part e}
 
 Here is the code for train.m
-\lstinputlisting[firstline=1, lastline=116]{@logisticClassify2/train.m}
+\lstinputlisting[firstline=1, lastline=117]{@logisticClassify2/train.m}
+
+\subsection*{Part f}
+
+For Data Set A, the convergence seemed to work pretty well with the step size already given that starts at 1 and then decreases with each iteration, so I did not touch the step size. I decided to look at number of iterations and stop tolerance. After about 30-40 iterations, it seemed to be converging. When I zoomed in, however, I noticed that the error rate was still decreasing. I decided then to do 100 iterations total and set the stop tolerance really low at 0.0000001 in order to get the error rate as low as possible. In the end, all the points seemed to be classified perfectly which is what we wanted here since the data was linearly separable. \\
+\\
+Here are the plots for Data Set A
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob1fPlotA1.png}
+\caption{The surrogate loss and error rate as function of number of iterations}
+\end{figure}
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob1fPlotA2.png}
+\caption{The predicted and actual classification of points. In this case, they were all predicted correctly!}
+\end{figure}
 
 \section*{Problem 2}
 
