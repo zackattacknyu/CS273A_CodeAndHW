@@ -59,9 +59,7 @@ errorB = length(find(YhatB~=YB))/length(YB);
 %%
 %Part E
 learnerA=logisticClassify2();
-%learnerA=setClasses(learnerA, unique(YA));
-%learnerA=setWeights(learnerA, wts);
-learnerA=train(learnerA,XA,YA);
+learnerA=train(learnerA,XA,YA,'stopIter',100,'stopTol',0.0001);
 
 %%
 %Part E practice script

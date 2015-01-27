@@ -81,20 +81,20 @@ while (~done)
     for i = 1:length(obj.wts)
         grad(i) = X1(j,i) * (sigmaZ - Y(j)) + 2*obj.wts(i)*reg;
     end
-    % Compute linear responses and activation for data point j
-    %%% TODO ^^^
-
-    % Compute gradient:
-    %%% TODO ^^^
 
     obj.wts = obj.wts - step * grad;      % take a step down the gradient
   end;
 
   done = false;
-  %%% TODO: Check for stopping conditions
 
-  if(iter > 10)
+  if(iter >= stopIter)
      done = true; 
+  end
+  
+  if(iter > 1)
+     if(abs(Jsur(iter-1)-Jsur(iter))<stopTol)
+        done = true; 
+     end
   end
   
   wtsold = obj.wts;
