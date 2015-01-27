@@ -143,21 +143,49 @@ The gradient vector $\nabla J_j(\theta)$ will be as follows
 Here is the code for train.m
 \lstinputlisting[firstline=1, lastline=117]{@logisticClassify2/train.m}
 
+\newpage
+
 \subsection*{Part f}
 
 For Data Set A, the convergence seemed to work pretty well with the step size already given that starts at 1 and then decreases with each iteration, so I did not touch the step size. I decided to look at number of iterations and stop tolerance. After about 30-40 iterations, it seemed to be converging. When I zoomed in, however, I noticed that the error rate was still decreasing. I decided then to do 100 iterations total and set the stop tolerance really low at 0.0000001 in order to get the error rate as low as possible. In the end, all the points seemed to be classified perfectly which is what we wanted here since the data was linearly separable. \\
 \\
-Here are the plots for Data Set A
+Here is the surrogate loss and error rate plot for Data Set A\\
 \begin{figure}[h]
 \centering
-\includegraphics[width=6 in]{prob1fPlotA1.png}
+\includegraphics[width=5 in]{prob1fPlotA1.png}
 \caption{The surrogate loss and error rate as function of number of iterations}
 \end{figure}
+
+\newpage
+Here is the classification plot using the final weights computed to attempt to separate Data Set A.\\
+
 \begin{figure}[h]
 \centering
-\includegraphics[width=6 in]{prob1fPlotA2.png}
+\includegraphics[width=5 in]{prob1fPlotA2.png}
 \caption{The predicted and actual classification of points. In this case, they were all predicted correctly!}
 \end{figure}
+
+\newpage
+For Data Set B, the convergence seemed to work well also so I left the step size as it was for data set A. It did take longer for the surrogate loss to converge, so I set the max number of iterations to 1000 and it was near converenge around 400 iterations. I decided to set the stop tolerance to the same value at 0.0000001 in order to get the error rate as low as possible. In this case, it did not execute all iterations before the stop tolerance was reached. There were around 800 iterations and then the stop tolerance criteria was met. The error rate however was still somewhat high. This is likely due to the fact that the data is not linearly separable so we reached a point where the error rate was as low as we could possibly make it. \\
+\\
+Here is the surrogate loss and error rate plot for Data Set B\\
+\begin{figure}[h]
+\centering
+\includegraphics[width=5 in]{prob1fPlotB1.png}
+\caption{The surrogate loss and error rate as function of number of iterations}
+\end{figure}
+
+\newpage
+
+Here is the classification plot using the final weights computed to attempt to separate Data Set A.\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=5 in]{prob1fPlotB2.png}
+\caption{The predicted and actual classification of points}
+\end{figure}
+
+\newpage
 
 \section*{Problem 2}
 

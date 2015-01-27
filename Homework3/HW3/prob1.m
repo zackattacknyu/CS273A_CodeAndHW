@@ -69,5 +69,7 @@ plotClassify2D(learnerA,XA,YA)
 %%
 %Data set B
 learnerB=logisticClassify2();
-learnerB=train(learnerB,XB,YB,'stopIter',100,'stopTol',0.0001);
+learnerB=train(learnerB,XB,YB,'stopIter',1000,'stopTol',0.000001);
 
+fig(3)
+plotClassify2D(learnerB,XB,YB)
