@@ -123,15 +123,19 @@ We will use the following identity:
 \]
 When we first take the derivative, we end up with
 \[
-\frac{\partial J_i}{\partial \theta_i} = -y^{(j)} (1-\sigma(z)) z' + (1-y^{(j)}) \sigma(z) z' + 2 \alpha \theta_i
+\frac{\partial J_j}{\partial \theta_i} = -y^{(j)} (1-\sigma(z)) z' + (1-y^{(j)}) \sigma(z) z' + 2 \alpha \theta_i
 \]
 We know that $z' = \frac{\partial z}{\partial \theta_i}= x_i^{(j)}$ thus expanding terms we get
 \[
-\frac{\partial J_i}{\partial \theta_i} = -y^{(j)}x_i^{(j)} + x_i^{(j)}\sigma(z)y^{(j)} + \sigma(z) x_i^{(j)} -y^{(j)} \sigma(z) x_i^{(j)} + 2 \alpha \theta_i
+\frac{\partial J_j}{\partial \theta_i} = -y^{(j)}x_i^{(j)} + x_i^{(j)}\sigma(z)y^{(j)} + \sigma(z) x_i^{(j)} -y^{(j)} \sigma(z) x_i^{(j)} + 2 \alpha \theta_i
 \]
 Cancelling out terms and then putting the $x_i^{(j)}$ factors together, we get
 \[
-\frac{\partial J_i}{\partial \theta_i} = x_i^{(j)} (\sigma(z) - y^{(j)} ) + 2 \alpha \theta_i
+\frac{\partial J_j}{\partial \theta_i} = x_i^{(j)} (\sigma(z) - y^{(j)} ) + 2 \alpha \theta_i
+\]
+The gradient vector $\nabla J_j(\theta)$ will be as follows
+\[
+[\frac{\partial J_j}{\partial \theta_1} \frac{\partial J_j}{\partial \theta_2} ... \frac{\partial J_j}{\partial \theta_d}]
 \]
 
 \section*{Problem 2}
