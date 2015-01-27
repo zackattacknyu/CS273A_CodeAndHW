@@ -61,7 +61,7 @@ errorB = length(find(YhatB~=YB))/length(YB);
 
 theta = [0.5 1 -0.25];
 alpha = 0.2;
-stepSize = 0.1;
+stepSize = 0.02;
 
 %define the learner used for plotting
 learnerGradDesc=logisticClassify2();
@@ -74,15 +74,12 @@ for j = 1:length(YA)
     yj = YA(j);
     xj = [1 XA(j,:)];
     zValue = dot(theta,xj);
-    expZ = exp(-zValue);
+    sigmaZ = 1/(1+exp(-zValue));
 
     %calculate J'
     JjPrime = zeros(1,length(theta));
     for i = 1:length(theta)
-        %JjPrime(i) = (1-yj)*xj(i) - expZ*xj(i)/(1+expZ) ...
-        %    + 2*theta(i)*alpha;
-        JjPrime(i) = (1-yj)*xj(i)*(1/(1+expZ)) - expZ*xj(i)*yj/(1+expZ) ...
-            + 2*theta(i)*alpha;
+        JjPrime(i) = xj(i) * (sigmaZ - yj) + 2*theta(i)*alpha;
     end
 
     %do the gradient step
