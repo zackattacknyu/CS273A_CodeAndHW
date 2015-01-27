@@ -58,7 +58,13 @@ errorB = length(find(YhatB~=YB))/length(YB);
 
 %%
 %Part E
+learnerA=logisticClassify2();
+%learnerA=setClasses(learnerA, unique(YA));
+%learnerA=setWeights(learnerA, wts);
+learnerA=train(learnerA,XA,YA);
 
+%%
+%Part E practice script
 theta = [0.5 1 -0.25];
 alpha = 0.2;
 stepSize = 0.02;

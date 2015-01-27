@@ -52,7 +52,16 @@ function obj = train(obj, X, Y, varargin)
 iter=1; Jsur=zeros(1,stopIter); J01=zeros(1,stopIter); done=0; 
 while (~done) 
   step = stepsize/iter;               % update step-size and evaluate current loss values
-  Jsur(iter) = inf;   %%% TODO: compute surrogate (neg log likelihood) loss
+  
+  %compute surrogate loss
+  for k = 1:length(Y)
+        zValueK = dot(obj.wts,X1(k,:));
+        sigmaZk = 1/(1+exp(-zValueK));
+        Jsur(iter) = Jsur(iter) + -Y(k)*log(sigmaZk) + (1-Y(k))*log(1-sigmaZk) ...
+            + reg*sum((obj.wts).^2);
+  end
+  Jsur(iter) = Jsur(iter)/length(Y);
+  
   J01(iter) = err(obj,X,Yin);
 
   if (plotFlag), switch d,            % Plots to help with visualization
@@ -63,6 +72,15 @@ while (~done)
   fig(1); semilogx(1:iter, Jsur(1:iter),'b-',1:iter,J01(1:iter),'g-'); drawnow;
 
   for j=1:n,
+      
+    zValue = dot(obj.wts,X1(j,:));
+    sigmaZ = 1/(1+exp(-zValue));
+
+    %calculate J'
+    grad = zeros(1,length(obj.wts));
+    for i = 1:length(obj.wts)
+        grad(i) = X1(j,i) * (sigmaZ - Y(j)) + 2*obj.wts(i)*reg;
+    end
     % Compute linear responses and activation for data point j
     %%% TODO ^^^
 
@@ -75,6 +93,10 @@ while (~done)
   done = false;
   %%% TODO: Check for stopping conditions
 
+  if(iter > 10)
+     done = true; 
+  end
+  
   wtsold = obj.wts;
   iter = iter + 1;
 end;
