@@ -54,12 +54,18 @@ while (~done)
   step = stepsize/iter;               % update step-size and evaluate current loss values
   
   %compute surrogate loss
+  
+  %computes the function given in 1d on each data point and adds it to the 
+  %     total loss for this iteration
   for k = 1:length(Y)
         zValueK = dot(obj.wts,X1(k,:));
         sigmaZk = 1/(1+exp(-zValueK));
         Jsur(iter) = Jsur(iter) + -Y(k)*log(sigmaZk) + (1-Y(k))*log(1-sigmaZk) ...
             + reg*sum((obj.wts).^2);
   end
+  
+  %divides by number of data points to get average loss
+  %     this gives us the final surrogate loss for this iteration
   Jsur(iter) = Jsur(iter)/length(Y);
   
   J01(iter) = err(obj,X,Yin);
@@ -72,11 +78,12 @@ while (~done)
   fig(1); semilogx(1:iter, Jsur(1:iter),'b-',1:iter,J01(1:iter),'g-'); drawnow;
 
   for j=1:n,
-      
+    
+      %gets the linear response of the data point with the current weights
     zValue = dot(obj.wts,X1(j,:));
-    sigmaZ = 1/(1+exp(-zValue));
 
-    %calculate J'
+    %calculate J' vector using formula derived for it in part 1d
+    sigmaZ = 1/(1+exp(-zValue));
     grad = zeros(1,length(obj.wts));
     for i = 1:length(obj.wts)
         grad(i) = X1(j,i) * (sigmaZ - Y(j)) + 2*obj.wts(i)*reg;
@@ -86,12 +93,19 @@ while (~done)
   end;
 
   done = false;
+  
+  %{
+  Here if either the stop iteration criteria is met or the stop tolerance
+        criteria is met, then this loops stops
+  %}
 
+  %sees if number of iterations is equal to stopIter
   if(iter >= stopIter)
      done = true; 
   end
   
   if(iter > 1)
+      %sees if change in error is less than stopTol
      if(abs(Jsur(iter-1)-Jsur(iter))<stopTol)
         done = true; 
      end
