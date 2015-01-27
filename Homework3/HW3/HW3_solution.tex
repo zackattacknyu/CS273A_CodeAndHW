@@ -191,10 +191,34 @@ Here is the classification plot using the final weights computed to attempt to s
 
 \subsection*{Part a}
 
-It can separate the points in a,b, and c, but you can arrange the points in d such that this won't separate them. The VC dimension is thus 3.
+This equation describes a vertical line through the points.\\
+It will thus easily separate the points in (a) and (b).\\
+\\
+For the points in (c), if the points (2,2) and (6,4) had one class and the point (4,8) was of a different class, then a vertical line could not separate them.\\
+\\
+Thus the most points that this one could shatter is 2\\
+The VC dimension is thus estimated at 2
 
 \subsection*{Part b}
 
-It can separate the points in a,b,c, and d, so the VC dimension is 4.
+This equation describes a circle with an arbitrary center and radius\\
+It will thus easily separate points in (a) and (b)\\
+\\
+With (c), if all points have the same class then of course this equation will separate them. \\
+The other case to consider is one point has one class and the other two points have another class. \\
+In this case, you can draw a small circle around the one point and now you have successfully separated the classes.\\
+\\
+With (d), this equation can technically separate them.\\
+If zero points are in a class, then this is trivial. \\
+If 1 point is in a class, so 3 in another class, then we can draw a circle around the point.\\
+If there are 2 points in a class, then no matter which two you pick for a class, you can actually draw a circle around those two points or the other two points and you have a successful classification. \\
+This only happened due to these particular points and how they were spaced. If I shifted one of the points closer to the other points, then there would be no way to separate them. \\
+\\
+Even though we could shatter 4 points, it only seems like we could reliably shatter 3 points in general.\\
+The VC dimension is thus estimated at 3.
+
+\subsection*{Part c}
+
+This is a line
 
 \end{document}
