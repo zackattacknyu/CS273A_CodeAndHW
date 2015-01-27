@@ -67,7 +67,10 @@ stepSize = 0.02;
 learnerGradDesc=logisticClassify2();
 learnerGradDesc=setClasses(learnerGradDesc, unique(YA));
 
-
+%loss values
+Jj = zeros(1,length(YA));
+minLoss = 100;
+bestTheta = theta;
 for j = 1:length(YA)
     
    %data that depends on our particular point
@@ -83,13 +86,31 @@ for j = 1:length(YA)
     end
 
     %do the gradient step
-    theta = theta - JjPrime.*stepSize; 
+    theta = theta - JjPrime.*stepSize;
+    
+    %find the loss function value
+    for k = 1:length(YA)
+        yk = YA(k);
+        xk = [1 XA(k,:)];
+        zValueK = dot(theta,xk);
+        sigmaZk = 1/(1+exp(-zValueK));
+        Jj(j) = Jj(j) + -yk*log(sigmaZk) + (1-yk)*log(1-sigmaZk) ...
+            + alpha*sum(theta.^2);
+    end
+    
+    if(Jj(j) < minLoss)
+       minLoss = Jj(j);
+       bestTheta = theta;
+    end
+    
     
     %replot the data
-    learnerGradDesc=setWeights(learnerGradDesc, theta);
-    plot2DLinear(learnerGradDesc,XA,YA);
+    %learnerGradDesc=setWeights(learnerGradDesc, theta);
+    %plot2DLinear(learnerGradDesc,XA,YA);
     
     %pause to see the new weights
-    pause(0.2);
+    %pause(0.2);
 end
 
+learnerGradDesc=setWeights(learnerGradDesc, bestTheta);
+plot2DLinear(learnerGradDesc,XA,YA);
