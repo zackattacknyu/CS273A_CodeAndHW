@@ -56,6 +56,10 @@ YhatB = predict(learnerB,XB);
 errorA = length(find(YhatA~=YA))/length(YA);
 errorB = length(find(YhatB~=YB))/length(YB);
 
+figure
+plotClassify2D(learnerA,XA,YA);
+figure
+plotClassify2D(learnerB,XB,YB);
 %%
 
 %Part F
