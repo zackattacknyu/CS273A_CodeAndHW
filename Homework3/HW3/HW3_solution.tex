@@ -164,7 +164,7 @@ Here is the code for train.m
 
 \subsection*{Part f}
 
-For Data Set A, the convergence seemed to work pretty well with the step size already given that starts at 1 and then decreases with each iteration, so I did not touch the step size. I decided to look at number of iterations and stop tolerance. After about 30-40 iterations, it seemed to be converging. When I zoomed in, however, I noticed that the error rate was still decreasing. I decided then to do 100 iterations total and set the stop tolerance really low at 0.0000001 in order to get the error rate as low as possible. In the end, all the points seemed to be classified perfectly which is what we wanted here since the data was linearly separable. \\
+For Data Set A, the convergence seemed to work pretty well with the step size already given that starts at 1 and then decreases with each iteration, so I did not touch the step size. I decided to look at number of iterations and stop tolerance. After about 40-50 iterations, it seemed to be converging. When I zoomed in, however, I noticed that the surrogate loss was still decreasing. I decided then to do 100 iterations total and set the stop tolerance really low at 0.0000001 in order to get the surrogate loss as low as possible. In the end, all the points seemed to be classified perfectly which is what we wanted here since the data was linearly separable. \\
 \\
 Here is the surrogate loss and error rate plot for Data Set A\\
 \begin{figure}[h]
@@ -183,7 +183,7 @@ Here is the classification plot using the final weights computed to attempt to s
 \end{figure}
 
 \newpage
-For Data Set B, the convergence seemed to work well also so I left the step size as it was for data set A. It did take longer for the surrogate loss to converge, so I set the max number of iterations to 1000 and it was near converenge around 400 iterations. I decided to set the stop tolerance to the same value at 0.0000001 in order to get the error rate as low as possible. In this case, it did not execute all iterations before the stop tolerance was reached. There were around 800 iterations and then the stop tolerance criteria was met. The error rate however was still somewhat high. This is likely due to the fact that the data is not linearly separable so we reached a point where the error rate was as low as we could possibly make it. \\
+For Data Set B, the convergence seemed to work well also so I left the step size as it was for data set A. It did take longer for the surrogate loss to converge, so I set the max number of iterations to 500. I decided to set the stop tolerance to the same value at 0.0000001 in order to get the surrogate loss as low as possible. In this case, it did not execute all iterations before the stop tolerance was reached. After around 200 iterations the stop tolerance criteria was met. The error rate however was still somewhat high. When I executed more iterations as a test, the final error rate did not change, so I kept my 200 iteration result. The final error rate being somewhat higher than previously is likely due to the fact that the data is not linearly separable so we reached a point where the error rate was as low as we could possibly make it. \\
 \\
 Here is the surrogate loss and error rate plot for Data Set B\\
 \begin{figure}[h]
@@ -202,7 +202,7 @@ Here is the classification plot using the final weights computed to attempt to s
 \caption{The predicted and actual classification of points}
 \end{figure}
 
-As part as code is concered, in addition to the train.m function that I listed in part e as well as the code from part a to initialize the variables, I also used the following script to call the train functions and generate the classification plot.
+As far as code is concered, in addition to the train.m function that I listed in part e as well as the code from part a to initialize the variables, I also used the following script to call the train functions and generate the classification plot.
 \lstinputlisting[firstline=65, lastline=79]{prob1.m}
 
 \newpage
