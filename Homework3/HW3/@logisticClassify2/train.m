@@ -60,7 +60,7 @@ while (~done)
   for k = 1:length(Y)
         zValueK = dot(obj.wts,X1(k,:));
         sigmaZk = 1/(1+exp(-zValueK));
-        Jsur(iter) = Jsur(iter) + -Y(k)*log(sigmaZk) + (1-Y(k))*log(1-sigmaZk) ...
+        Jsur(iter) = Jsur(iter) + -Y(k)*log(sigmaZk) - (1-Y(k))*log(1-sigmaZk) ...
             + reg*sum((obj.wts).^2);
   end
   
