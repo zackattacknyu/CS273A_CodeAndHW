@@ -221,29 +221,28 @@ The VC dimension is thus estimated at 2
 
 \subsection*{Part b}
 
-This equation describes a circle with an arbitrary center and radius\\
-It will thus easily separate points in (a) and (b)\\
+This equation describes a circle with an arbitrary center and radius. In this case, the inside of the circle must always be assigned negatively and the outside would be assigned positively.\\
+\\
+The circle will thus easily separate points in (a) and (b)\\
 \\
 With (c), if all points have the same class then of course this equation will separate them. \\
-The other case to consider is one point has one class and the other two points have another class. \\
-In this case, you can draw a small circle around the one point and now you have successfully separated the classes.\\
+If one point is negative, then I can draw a small circle around it and the data has been separated. \\
+If two points are negative, then we could draw a large circle whose origin is not in the direction of the other point. The two negative points would lie inside the large circle but near the boundary. We have now separated the data.\\
+Thus in all cases, we could separate the data in (c)\\
 \\
-With (d), this equation can technically separate them.\\
-If zero points are in a class, then this is trivial. \\
-If 1 point is in a class, so 3 in another class, then we can draw a circle around the point.\\
-If there are 2 points in a class, then no matter which two you pick for a class, you can actually draw a circle around those two points or the other two points and you have a successful classification. \\
-This only happened due to these particular points and how they were spaced. If I shifted one of the points closer to the other points, then there would be no way to separate them. \\
+With (d), this equation cannot separate them\\
+If the points (2,2) and (8,7) are assigned to be negative and the others positive, then there is no way to draw a circle that would perfectly classify the points. This is because any circle surrounding the negative points would include at least one of the positive points. \\
 \\
-Even though we could shatter 4 points, it only seems like we could reliably shatter 3 points in general.\\
+We have thus estimated that we can only shatter 3 points.\\
 The VC dimension is thus estimated at 3.
-
+\newpage
 \subsection*{Part c}
 
-This is a line that is centered at the origin and not horizontal since then $a \neq 0$. \\
+This is a line that is centered at the origin and not horizontal since $a \neq 0$. \\
 \\
 It can easily separate points in (a) and (b)\\
 \\
-With (c), if the points (6,4) and (4,8) had one class and the point (2,2) was part of another class, then there would be no way to separate them using a line at the origin. If it were possible to separate them, then we would be able to split the number line in two and put $\frac{2}{3}$ and 2 into one part while putting 1 into the other part.\\
+With (c), if the points (6,4) and (4,8) are part of the negative class and the point (2,2) is part of the positive class, then there would be no way to separate them using a line at the origin. In the first quadrant, if a line $L$ passes through the origin, then every point above $L$ makes a slope with the origin that is greater than $L$ and every point below $L$ makes a slope with the origin that is less than $L$. The negative class points will make slopes with the origin of $\frac{2}{3}$ and 2 respectively. The positive class point makes a slope with the origin that is equal to 1. We thus need to find a slope $s$ such that $s \geq 1$ and $s < \frac{2}{3}$ and $s<2$. This is obviously impossible thus we cannot shatter the points in (c).\\
 \\
 Thus, the most number of points this equation can shatter is 2\\
 The VC dimension is thus 2
