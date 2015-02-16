@@ -37,3 +37,17 @@ for xCol = 1:5
 end
 
 [gain,colNum] = max(information);
+
+%make sure function works
+[newXDataClass0, newXDataClass1,newYvecClass0, newYvecClass1...
+    ,maxInfoGain,colNum ] = getDecTreeSplit( xyData(:,1:5),yVec );
+
+%we split on class 2
+
+%now we split x_2=0
+[newXData2Class0, newXData2Class1,newYvec2Class0, newYvec2Class1...
+    ,maxInfoGain2,colNum2 ] = getDecTreeSplit( newXDataClass0,newYvecClass0 );
+
+%now we split x_2=1
+[newXData3Class0, newXData3Class1,newYvec3Class0, newYvec3Class1...
+    ,maxInfoGain3,colNum3 ] = getDecTreeSplit( newXDataClass1,newYvecClass1 );
