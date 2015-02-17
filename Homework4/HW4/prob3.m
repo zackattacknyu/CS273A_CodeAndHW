@@ -42,6 +42,15 @@ plot(validMSE2)
 %%
 
 %Part D
-dt = treeRegress(Xtr,Ytr,'maxDepth',9,'minParent',2^9);
+%dt = treeRegress(Xtr,Ytr,'maxDepth',9,'minParent',2^9);
+%dt = treeRegress(Xtr,Ytr,'maxDepth',20,'minParent',2^9);
+dt = treeRegress(Xtr,Ytr,'maxDepth',9);
 Yhat = predict(dt,Xte);
-save('kagglePrediction.txt','Yhat');
+
+%%
+fh = fopen('kagglePrediction.csv','w');  % open file for upload
+fprintf(fh,'ID,Prediction\n');      % output header line
+for i=1:length(Yhat),
+    fprintf(fh,'%d,%d\n',i,Yhat(i));  % output each prediction
+end;
+fclose(fh);                         % close the file
