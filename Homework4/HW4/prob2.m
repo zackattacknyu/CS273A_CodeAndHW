@@ -1,3 +1,5 @@
+%%
+%sets up the data
 xyData=[
 0 0 1 1 0 -1;
 1 1 0 1 0 -1;
@@ -11,17 +13,18 @@ xyData=[
 1 1 1 1 1 -1];
 
 yVec = xyData(:,6);
+xVals = xyData(:,1:5);
 numVals = size(yVec);
 
+%%
+%Part A, calculates the entropy
 probClass1 = size(find(yVec==1))/numVals;
-
-%calculates entropy.
 entropy = getEntropy(probClass1);
 
+%Part B, calculates the information gain for each variable
 information = zeros(1,5);
-
 for xCol = 1:5
-    xData = xyData(:,xCol);
+    xData = xVals(:,xCol);
     probX1 = size(find(xData==1))/numVals;
     probX0 = 1-probX1;
     yDataForX1 = yVec(xData==1);
@@ -36,11 +39,21 @@ for xCol = 1:5
     information(xCol) = probX1*(entropy-newEntropyX1)+probX0*(entropy-newEntropyX0);
 end
 
-[gain,colNum] = max(information);
+[gain,colNum0] = max(information);
+
+%information gain for all variables
+information
+
+%feature to split on initially
+colNum0
+
+%%
+
+%Part C, calculates the decision tree
 
 %This does the first split
 [newXDataClass0, newXDataClass1,newYvecClass0, newYvecClass1...
-    ,maxInfoGain,colNum ] = getDecTreeSplit( xyData(:,1:5),yVec );
+    ,maxInfoGain,colNum ] = getDecTreeSplit( xVals,yVec );
 
 %{
     In the first split, we use x_2
@@ -65,5 +78,5 @@ end
     When x_2=0,x_1=0,x_4=0 y=1
     When x_2=0,x_1=0,x_4=1 y=-1
     
-    These both have just one row, so we are done.
+    We are now done
 %}
