@@ -8,6 +8,18 @@ numFeatures = sizeX(2);
 
 probClass1 = size(find(yVec==1))/numVals;
 
+if probClass1 <= 0
+    newXDataClass0 = xVals;
+    newYvecClass0 = yVec;
+    colNum = 0;
+   return 
+elseif probClass1 >= 1
+    newXDataClass1 = xVals;
+    newYvecClass1 = yVec;
+    colNum = 0;
+    return
+end
+
 %calculates entropy.
 entropy = getEntropy(probClass1);
 

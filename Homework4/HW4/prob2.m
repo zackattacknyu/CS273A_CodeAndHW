@@ -38,16 +38,32 @@ end
 
 [gain,colNum] = max(information);
 
-%make sure function works
+%This does the first split
 [newXDataClass0, newXDataClass1,newYvecClass0, newYvecClass1...
     ,maxInfoGain,colNum ] = getDecTreeSplit( xyData(:,1:5),yVec );
 
-%we split on class 2
+%{
+    In the first split, we use x_2
+    When x_2 = 1, y=-1 so we don't need to traverse furthur down that node
+    We will now split x_2=0
+%}
 
-%now we split x_2=0
 [newXData2Class0, newXData2Class1,newYvec2Class0, newYvec2Class1...
     ,maxInfoGain2,colNum2 ] = getDecTreeSplit( newXDataClass0,newYvecClass0 );
 
-%now we split x_2=1
+%{
+  This tells us to split on x_1
+  When x_2=0,x_1=1, it happens that y=1 so we do not traverse furthur down
+    We will now split x_2=0,x_1=0
+%}
+
 [newXData3Class0, newXData3Class1,newYvec3Class0, newYvec3Class1...
-    ,maxInfoGain3,colNum3 ] = getDecTreeSplit( newXDataClass1,newYvecClass1 );
+    ,maxInfoGain3,colNum3 ] = getDecTreeSplit( newXData2Class0,newYvec2Class0 );
+
+%{
+    This tells us to split on x_4
+    When x_2=0,x_1=0,x_4=0 y=1
+    When x_2=0,x_1=0,x_4=1 y=-1
+    
+    These both have just one row, so we are done.
+%}
