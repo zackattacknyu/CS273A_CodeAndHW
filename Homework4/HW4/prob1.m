@@ -50,11 +50,23 @@ b = ones(numFeatures,1).*-1;
 
 theta = quadprog(H,f,A,b);
 
+%%
+
+b = theta(1);
+w = theta(2:3);
+result = abs(XA*w + b);
+[newRes Inds] = sort(result);
+supportVecInds = Inds(1:3);
+supportVecs = XA(supportVecInds,:);
+
+%%
 %plots the classification boundary from this
 learnerA=logisticClassify();
 learnerA=setClasses(learnerA, unique(YA));
 learnerA=setWeights(learnerA, theta');
 plotClassify2D(learnerA,XA,YA);
+hold on
+plot(supportVecs(:,1),supportVecs(:,2),'bx');
 
 %%
 
