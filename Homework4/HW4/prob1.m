@@ -7,7 +7,7 @@ sizeXA = size(YA);
 numFeatures = sizeXA(1);
 
 Yvar = YA.*2 - 1; %turns 0 and 1 into -1 and 1
-
+%%
 %{
 we need to minimize sum w_i^2
 subject to y(w*x+b) >= 1
@@ -55,3 +55,30 @@ learnerA=logisticClassify();
 learnerA=setClasses(learnerA, unique(YA));
 learnerA=setWeights(learnerA, theta');
 plotClassify2D(learnerA,XA,YA);
+
+%%
+
+%{
+We have to change the optimization function to
+min alpha>=0 1/2 sum_{alpha_i...} - sum_{alpha_i}
+%}
+
+%This will let us construct the H matrix for quadprog
+Kmat = XA*XA';
+yMat = Yvar*Yvar';
+Hmatrix = yMat.*Kmat;
+
+%this is the f vector
+fVec = -ones(numFeatures,1);
+
+%this is the A matrix, which will also be Aeq
+Aeq = Yvar';
+beq = 0;
+
+%the lower bound is zero
+LBvec = zeros(numFeatures,1);
+
+%run quadprog
+%alpha = quadprog(Hmatrix,fVec,[],[],Aeq,beq,LBvec);
+[alpha,fval,exitflag,output,lambda] = ...
+    quadprog(Hmatrix,fVec,[],[],Aeq,beq,LBvec);
