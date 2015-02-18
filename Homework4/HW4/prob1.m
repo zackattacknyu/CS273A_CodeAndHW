@@ -72,8 +72,8 @@ Hmatrix = yMat.*Kmat;
 fVec = -ones(numFeatures,1);
 
 %this is the A matrix, which will also be Aeq
-Aeq = Yvar';
-beq = 0;
+Amat = Yvar';
+bVal = 0;
 
 %the lower bound is zero
 LBvec = zeros(numFeatures,1);
@@ -81,4 +81,4 @@ LBvec = zeros(numFeatures,1);
 %run quadprog
 %alpha = quadprog(Hmatrix,fVec,[],[],Aeq,beq,LBvec);
 [alpha,fval,exitflag,output,lambda] = ...
-    quadprog(Hmatrix,fVec,[],[],Aeq,beq,LBvec);
+    quadprog(Hmatrix,fVec,[],[],Amat,bVal,LBvec);
