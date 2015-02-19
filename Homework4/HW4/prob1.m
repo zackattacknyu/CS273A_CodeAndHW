@@ -40,10 +40,8 @@ H = [0 0 0; 0 2 0;0 0 2];
 f = [0 0 0];
 
 %gets the A matrix for quadprog
-A = [ones(numFeatures,1) XA];
-for row = 1:numFeatures
-   A(row,:) = A(row,:).*(Yvar(row)*-1);
-end
+Ainit = [ones(numFeatures,1) XA];
+A = -1.*Ainit.*(repmat(Yvar,1,3));
 
 %gets the b column
 b = ones(numFeatures,1).*-1;
