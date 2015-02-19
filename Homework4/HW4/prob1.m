@@ -91,6 +91,4 @@ bVal = 0;
 LBvec = zeros(numFeatures,1);
 
 %run quadprog
-%alpha = quadprog(Hmatrix,fVec,[],[],Aeq,beq,LBvec);
-[alpha,fval,exitflag,output,lambda] = ...
-    quadprog(Hmatrix,fVec,[],[],Amat,bVal,LBvec);
+alpha = quadprog(Hmatrix,fVec,[],[],Amat,bVal,LBvec);
