@@ -183,4 +183,19 @@ With the minParent parameter, the model grows decreasingly complex as minParent 
 Here is the code used for Part c\\
 \lstinputlisting[firstline=31, lastline=46]{prob3.m}
 
+\newpage
+
+\subsection*{Part d}
+
+I attempted 3 different calls to treeRegress with the following parameters:\\
+1. maxDepth=9, minParent=$2^9$\\
+2. maxDepth=20, minParent=$2^9$\\
+3. maxDepth=9\\
+\\
+With call 1, the Kaggle score was 0.65140\\
+With call 2, the Kaggle score was 0.64843, which was the best one of the three\\
+With call 3, the Kaggle score was 0.66217\\
+
+Here is the code for part d\\
+\lstinputlisting[firstline=48, lastline=68]{prob3.m}
 \end{document}

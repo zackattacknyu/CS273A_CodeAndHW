@@ -48,12 +48,18 @@ title('Validation MSE versus minParent');
 %%
 
 %Part D
+
+%Call 1: Kaggle score was 0.65140
 %dt = treeRegress(Xtr,Ytr,'maxDepth',9,'minParent',2^9);
-%dt = treeRegress(Xtr,Ytr,'maxDepth',20,'minParent',2^9);
-dt = treeRegress(Xtr,Ytr,'maxDepth',9);
+
+%Call 2: Kaggle score was 0.64843, the best one
+dt = treeRegress(Xtr,Ytr,'maxDepth',20,'minParent',2^9);
+
+%Call 3: Kaggle score was 0.66217
+%dt = treeRegress(Xtr,Ytr,'maxDepth',9); 
+
 Yhat = predict(dt,Xte);
 
-%%
 fh = fopen('kagglePrediction.csv','w');  % open file for upload
 fprintf(fh,'ID,Prediction\n');      % output header line
 for i=1:length(Yhat),
