@@ -39,7 +39,10 @@ for val = 1:10
    validMSE2(val) = mse(dt,Xvalid,Yvalid);
 end
 
-plot(validMSE2)
+plot(3:12,validMSE2)
+xlabel('log_2(MinParent) Value');
+ylabel('Validation MSE');
+title('Validation MSE versus minParent');
 [minMSE2,indexOfMinMSE2] = min(validMSE2);
 
 %%

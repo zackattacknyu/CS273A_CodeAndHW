@@ -153,12 +153,12 @@ This is the code I used to obtain it:
 
 \subsection*{Part b}
 
-At the maxDepth parameter increases, the model grows increasingly complex. When we plot validation MSE versus maxDepth, it is clear that it does begin to overfit. The lowest validation MSE is obtained when maxDepth is 8 and after that overfitting seems to begin. The validation MSE at 8 ends up being 0.4355. Here is the plot which illustrates that below.
+At the maxDepth parameter increases, the model grows increasingly complex. This is due to the fact that more nodes can be added to the decision tree. Just like with other models, it does begin to overfit as we add complexity. The lowest validation MSE is obtained when maxDepth is 8 and after that overfitting seems to begin. The validation MSE at 8 ends up being 0.4355. Here is the plot which illustrates that below.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=6 in]{prob3plot1.png}
-\caption{Validation MSEs for the Decision Trees}
+\caption{Validation MSEs for the Decision Trees with varying maxDepth}
 \end{figure}
 
 \newpage
@@ -166,5 +166,21 @@ At the maxDepth parameter increases, the model grows increasingly complex. When 
 Here is the code used for Part b\\
 \lstinputlisting[firstline=13, lastline=29]{prob3.m}
 
+\newpage
+
+\subsection*{Part c}
+
+With the minParent parameter, the model grows decreasingly complex as minParent grows. This is due to the fact that the number of data points required for a new split increases, hence less splits will be made. Thus it goes from overfitting to underfitting as minParent grows. It is thus overfitting in the first few steps and underfitting in the last few steps. The best validation MSE is obtained in the middle when minParent is equal to $2^9$ with an MSE of 0.4306. Here is the plot which illustrates this:
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob3plot2.png}
+\caption{Validation MSEs for the Decision Trees with varying minParent}
+\end{figure}
+
+\newpage
+
+Here is the code used for Part c\\
+\lstinputlisting[firstline=31, lastline=46]{prob3.m}
 
 \end{document}
