@@ -92,3 +92,24 @@ LBvec = zeros(numFeatures,1);
 
 %run quadprog
 alpha = quadprog(Hmatrix,fVec,[],[],Amat,bVal,LBvec);
+
+%%
+
+bFromTheta = theta(1);
+wFromTheta = theta(2:3);
+epsilon = 0.001;
+
+%the alphas that are greater than 0 indicate support vectors
+supportVecInds = find(alpha>epsilon);
+supportVecs = XA(supportVecInds,:);
+supportVecsY = Yvar(supportVecInds);
+
+%verify w obtained from alpha
+wFromAlpha = (alpha.*Yvar)'*XA;
+diffBetweenW = sum(abs(wFromAlpha'-wFromTheta));
+assert(diffBetweenW < epsilon); %no assertion failed occured, so this is true
+
+%verify b obtained from alpha
+bFromAlpha = mean(supportVecsY-supportVecs*wFromAlpha');
+diffBetweenB = abs(bFromAlpha-bFromTheta);
+assert(diffBetweenB < epsilon); %no assertion fail
