@@ -139,4 +139,32 @@ This is the code for the getEntropy function
 
 This is the code for the getDecTreeSplit function
 \lstinputlisting[firstline=1, lastline=52]{getDecTreeSplit.m}
+
+
+\section*{Problem 3}
+
+\subsection*{Part a}
+
+The validation MSE that I obtained was 0.7133. \\
+This is the code I used to obtain it:
+\lstinputlisting[firstline=1, lastline=11]{prob3.m}
+
+\newpage
+
+\subsection*{Part b}
+
+At the maxDepth parameter increases, the model grows increasingly complex. When we plot validation MSE versus maxDepth, it is clear that it does begin to overfit. The lowest validation MSE is obtained when maxDepth is 8 and after that overfitting seems to begin. The validation MSE at 8 ends up being 0.4355. Here is the plot which illustrates that below.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob3plot1.png}
+\caption{Validation MSEs for the Decision Trees}
+\end{figure}
+
+\newpage
+
+Here is the code used for Part b\\
+\lstinputlisting[firstline=13, lastline=29]{prob3.m}
+
+
 \end{document}

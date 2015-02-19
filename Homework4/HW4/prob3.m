@@ -21,7 +21,10 @@ for depth = 0:15
     index = index + 1;
 end
 
-plot(validMSE)
+plot(0:15,validMSE)
+xlabel('MaxDepth Value');
+ylabel('Validation MSE');
+title('Validation MSE versus MaxDepth');
 [minMSE,indexOfMinMSE] = min(validMSE);
 depthOfMinMSE = indexOfMinMSE + 1;
 
