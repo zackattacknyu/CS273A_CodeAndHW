@@ -52,31 +52,18 @@ theta = quadprog(H,f,A,b);
 
 %%
 
-b = theta(1);
-w = theta(2:3);
-result = abs(XA*w + b);
-[newRes Inds] = sort(result);
-supportVecInds = Inds(1:3);
-supportVecs = XA(supportVecInds,:);
-
-%%
-%plots the classification boundary from this
-learnerA=logisticClassify();
-learnerA=setClasses(learnerA, unique(YA));
-learnerA=setWeights(learnerA, theta');
-plotClassify2D(learnerA,XA,YA);
-hold on
-plot(supportVecs(:,1),supportVecs(:,2),'bx');
-
-%%
-
 %{
 We have to change the optimization function to
-min alpha>=0 1/2 sum_{alpha_i...} - sum_{alpha_i}
+min alpha>=0 1/2 sum{alpha_i alpha_j y(i) y(j) K_ij} - sum alpha_i
+
+Details below on what the variables become in order to 
+    compute the quadratic program in this form
 %}
 
-%This will let us construct the H matrix for quadprog
+%this lets us construct the dot product matrix K
 Kmat = XA*XA';
+
+%this constructs the matrix H for the program
 yMat = Yvar*Yvar';
 Hmatrix = yMat.*Kmat;
 
@@ -85,20 +72,29 @@ fVec = -ones(numFeatures,1);
 
 %this is the A matrix, which will also be Aeq
 Amat = Yvar';
+
+%this is the b value for the input
 bVal = 0;
 
 %the lower bound is zero
 LBvec = zeros(numFeatures,1);
 
-%run quadprog
+%run quadprog on dual form finally
 alpha = quadprog(Hmatrix,fVec,[],[],Amat,bVal,LBvec);
 
 %%
 
+%this part verifies the alpha solution and then plots the 
+%       boundary and support vectors
+
+%gets b,w from theta
 bFromTheta = theta(1);
 wFromTheta = theta(2:3);
+
+%due to floating part error, this is just to indicate almost zero
 epsilon = 0.001;
 
+%I find the support vectors here
 %the alphas that are greater than 0 indicate support vectors
 supportVecInds = find(alpha>epsilon);
 supportVecs = XA(supportVecInds,:);
@@ -113,3 +109,11 @@ assert(diffBetweenW < epsilon); %no assertion failed occured, so this is true
 bFromAlpha = mean(supportVecsY-supportVecs*wFromAlpha');
 diffBetweenB = abs(bFromAlpha-bFromTheta);
 assert(diffBetweenB < epsilon); %no assertion fail
+
+%plots the classification boundary finally
+learnerA=logisticClassify();
+learnerA=setClasses(learnerA, unique(YA));
+learnerA=setWeights(learnerA, theta');
+plotClassify2D(learnerA,XA,YA);
+hold on
+plot(supportVecs(:,1),supportVecs(:,2),'y*');
