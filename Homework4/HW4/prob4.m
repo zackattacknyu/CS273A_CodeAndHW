@@ -8,7 +8,7 @@ mu = mean(Ytr);
 curY = Ytr - mu; 
 
 %number of ensembles
-N = 5;
+N = 10;
 
 %alpha values
 alpha = ones(1,N);
@@ -25,6 +25,14 @@ predictY = zeros(Nte,1); % Allocate space
 for k=1:N, % Predict with each learner
  predictY = predictY + alpha(k)*predict(dt{k}, Xte);
 end; 
+
+%%
+
+%get the MSE for our function
+trainingMSE = mean((curY-Ytr).^2);
+
+%0.6780 for N=5
+
 
 %%
 fh = fopen('kagglePrediction.csv','w');  % open file for upload
