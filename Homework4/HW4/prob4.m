@@ -3,21 +3,46 @@ Xtr = load('kaggle/kaggle.X1.train.txt');
 Ytr = load('kaggle/kaggle.Y.train.txt');
 
 %%
+
+[Xtrain,Xvalid,Ytrain,Yvalid] = splitData(Xtr,Ytr,0.8);
+
+%%
 %start with "mean" predictor
-mu = mean(Ytr); 
-curY = Ytr - mu; 
+mu = mean(Ytrain); 
+curY = Ytrain - mu; 
 
 %number of ensembles
-N = 10;
+N = 25;
+
+mseTraining = zeros(1,N);
+mseValidation = zeros(1,N);
 
 %alpha values
 alpha = ones(1,N);
 dt = cell(1,N);
 
+[Nvalid,Dval] = size(Xvalid);
+
+predictY = zeros(Nvalid,1); % Allocate space
+
 for k=1:N,
- dt{k} = treeRegress(Xtr,curY,'maxDepth',3);
- curY = curY - alpha(k) * predict(dt{k}, Xtr);
+ dt{k} = treeRegress(Xtrain,curY,'maxDepth',3);
+ curY = curY - alpha(k) * predict(dt{k}, Xtrain);
+ 
+ %find training MSE at k
+ mseTraining(k) = mean((curY-Ytrain).^2);
+ 
+ %find validation MSE
+ predictY = predictY + alpha(k)*predict(dt{k}, Xvalid);
+ mseValidation(k) = mean((Yvalid-predictY).^2);
+ 
 end;
+
+%%
+
+plot(mseTraining,'r-');
+hold on
+plot(mseValidation,'g--');
 %%
 % Test data Xtest
 [Nte,D] = size(Xte);
@@ -25,14 +50,6 @@ predictY = zeros(Nte,1); % Allocate space
 for k=1:N, % Predict with each learner
  predictY = predictY + alpha(k)*predict(dt{k}, Xte);
 end; 
-
-%%
-
-%get the MSE for our function
-trainingMSE = mean((curY-Ytr).^2);
-
-%0.6780 for N=5
-
 
 %%
 fh = fopen('kagglePrediction.csv','w');  % open file for upload
