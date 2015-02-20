@@ -2,17 +2,16 @@ Xte = load('kaggle/kaggle.X1.test.txt');
 Xtr = load('kaggle/kaggle.X1.train.txt');
 Ytr = load('kaggle/kaggle.Y.train.txt');
 
-%%
 
 [Xtrain,Xvalid,Ytrain,Yvalid] = splitData(Xtr,Ytr,0.8);
 
-%%
 %start with "mean" predictor
 mu = mean(Ytrain); 
 curY = Ytrain - mu; 
 
 %number of ensembles
-N = 25;
+%N = 25;
+N = 100;
 
 mseTraining = zeros(1,N);
 mseValidation = zeros(1,N);
