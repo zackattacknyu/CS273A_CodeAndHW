@@ -1,8 +1,16 @@
+%%
+
+%run this when loading on a new computer
 Xte = load('kaggle/kaggle.X1.test.txt');
 Xtr = load('kaggle/kaggle.X1.train.txt');
 Ytr = load('kaggle/kaggle.Y.train.txt');
+save('kaggleData.mat','Xte','Ytr','Xtr');
 
+%%
+%run this if above was already run on this computer
+load('kaggleData.mat');
 
+%%
 [Xtrain,Xvalid,Ytrain,Yvalid] = splitData(Xtr,Ytr,0.8);
 
 %start with "mean" predictor
