@@ -18,8 +18,7 @@ mu = mean(Ytrain);
 curY = 0; 
 
 %number of ensembles
-N = 25;
-%N = 100;
+N = 100;
 
 mseTraining = zeros(1,N);
 mseValidation = zeros(1,N);
