@@ -1,4 +1,5 @@
-function [ newXDataClass0, newXDataClass1,newYvecClass0, newYvecClass1,maxInfoGain,colNum ] = getDecTreeSplit( xVals,yVec )
+function [ newXDataClass0, newXDataClass1,newYvecClass0, newYvecClass1,maxInfoGain,colNum ]...
+    = getDecTreeSplit( xVals,yVec )
 %GETDECTREESPLIT Summary of this function goes here
 %   Detailed explanation goes here
 
