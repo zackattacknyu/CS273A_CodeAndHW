@@ -198,4 +198,31 @@ With call 3, the Kaggle score was 0.66217\\
 
 Here is the code for part d\\
 \lstinputlisting[firstline=48, lastline=68]{prob3.m}
+
+\newpage
+
+\section*{Problem 4}
+
+\subsection*{Part a}
+
+I decided to do Option 2 and employ Gradient Boosting to try to enhance my predictions. \\
+Here are the errors I got for 1,5,10,25 learners: \\
+\\
+\begin{tabular}{ c | c | c }
+  Number of Learners & Training MSE & Validation MSE\\
+  \hline                       
+  1 & 0.6203 & 0.6461 \\
+  5 & 0.4933 & 0.4386\\
+  10 & 0.4487 & 0.4136\\
+  25 & 0.4283 & 0.3923\\
+\end{tabular}
+\\
+\\
+Here is the plot of training and validation MSE:\\
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob4PartA.png}
+\caption{MSE versus number of learners}
+\end{figure}
+
 \end{document}

@@ -48,9 +48,13 @@ end;
 
 %%
 
-plot(mseTraining,'r-');
+plot(mseTraining(1:25),'r-');
 hold on
-plot(mseValidation,'g--');
+plot(mseValidation(1:25),'g--');
+xlabel('Number of Learners in Ensemble');
+ylabel('Mean Squared Error');
+legend('Training Error','Validation Error');
+title('MSE versus Number of Learners for Gradient Boosting');
 %%
 % Test data Xtest
 [Nte,D] = size(Xte);
