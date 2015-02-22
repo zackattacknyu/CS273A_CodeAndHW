@@ -13,12 +13,8 @@ load('kaggleData.mat');
 %%
 [Xtrain,Xvalid,Ytrain,Yvalid] = splitData(Xtr,Ytr,0.8);
 
-%start with "mean" predictor
-mu = mean(Ytrain); 
-curY = 0; 
-
 %number of ensembles
-N = 100;
+N = 200;
 
 mseTraining = zeros(1,N);
 mseValidation = zeros(1,N);
@@ -27,9 +23,8 @@ mseValidation = zeros(1,N);
 alpha = 0.25*ones(1,N);
 dt = cell(1,N);
 
-[Nvalid,Dval] = size(Xvalid);
-
-predictY = 0; %zeros(Nvalid,1); % Allocate space
+predictY = 0;
+curY = 0;
 
 for k=1:N,
  
@@ -47,21 +42,31 @@ for k=1:N,
 end;
 
 %%
-
-plot(mseTraining(1:25),'r-');
+plot(mseTraining,'r-');
 hold on
-plot(mseValidation(1:25),'g--');
+plot(mseValidation,'g--');
 xlabel('Number of Learners in Ensemble');
 ylabel('Mean Squared Error');
 legend('Training Error','Validation Error');
 title('MSE versus Number of Learners for Gradient Boosting');
 %%
-% Test data Xtest
-[Nte,D] = size(Xte);
-predictY = zeros(Nte,1); % Allocate space
-for k=1:N, % Predict with each learner
- predictY = predictY + alpha(k)*predict(dt{k}, Xte);
-end; 
+
+%train on all the test data
+
+N=100; %new number of ensembles
+curY=0;
+predictY=0;
+for k=1:N,
+ 
+ %train the k-th decision tree
+ grad = 2*(curY - Ytr);
+ dt{k} = treeRegress(Xtr,grad,'maxDepth',3);
+ curY = curY - alpha(k) * predict(dt{k}, Xtr);
+ 
+ %boost current prediction using that k-th decision tree
+ predictY = predictY - alpha(k)*predict(dt{k}, Xte);
+ 
+end;
 
 %%
 fh = fopen('kagglePrediction.csv','w');  % open file for upload
