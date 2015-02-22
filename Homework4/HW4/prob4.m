@@ -18,17 +18,13 @@ mu = mean(Ytrain);
 curY = 0; 
 
 %number of ensembles
-%N = 25;
-N = 100;
+N = 25;
+%N = 100;
 
 mseTraining = zeros(1,N);
 mseValidation = zeros(1,N);
 
 %alpha values
-%alpha = ones(1,N);
-%for i = 1:N
-%   alpha(i) = alpha(i)/i; 
-%end
 alpha = 0.25*ones(1,N);
 dt = cell(1,N);
 
@@ -37,11 +33,11 @@ dt = cell(1,N);
 predictY = 0; %zeros(Nvalid,1); % Allocate space
 
 for k=1:N,
+ 
  grad = 2*(curY - Ytrain);
  dt{k} = treeRegress(Xtrain,grad,'maxDepth',3);
- %dt{k} = treeRegress(Xtrain,curY,'maxDepth',20,'minParent',2^10);
- %curY = curY - alpha(k) * predict(dt{k}, Xtrain);
  curY = curY - alpha(k) * predict(dt{k}, Xtrain);
+ 
  %find training MSE at k
  mseTraining(k) = mean((curY-Ytrain).^2);
  
