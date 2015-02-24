@@ -7,24 +7,29 @@ Ytr = load('kaggle/kaggle.Y.train.txt');
 
 %Part A
 [Xtrain,Xvalid,Ytrain,Yvalid] = splitData(Xtr,Ytr,0.8);
-dt = treeRegress(Xtrain,Ytrain, 'maxDepth',20);
-mseTree = mse(dt,Xvalid,Yvalid);
+%dt = treeRegress(Xtrain,Ytrain, 'maxDepth',20);
+%mseTree = mse(dt,Xvalid,Yvalid);
 
 %%
 
 %Part B
 validMSE = ones(1,16);
+trainMSE = ones(1,16);
 index = 1;
 for depth = 0:15
     dt = treeRegress(Xtrain,Ytrain, 'maxDepth',depth);
+    trainMSE(index) = mse(dt,Xtrain,Ytrain);
     validMSE(index) = mse(dt,Xvalid,Yvalid);
     index = index + 1;
 end
 
-plot(0:15,validMSE)
+plot(0:15,validMSE,'g-')
+hold on
+plot(0:15,trainMSE','r--')
 xlabel('MaxDepth Value');
-ylabel('Validation MSE');
-title('Validation MSE versus MaxDepth');
+ylabel('MSE');
+title('MSE versus MaxDepth');
+legend('Validation MSE','Training MSE');
 [minMSE,indexOfMinMSE] = min(validMSE);
 depthOfMinMSE = indexOfMinMSE + 1;
 
@@ -34,15 +39,20 @@ depthOfMinMSE = indexOfMinMSE + 1;
 
 minParentVals = 2.^(3:12);
 validMSE2 = zeros(1,10);
+trainMSE2 = zeros(1,10);
 for val = 1:10
     dt = treeRegress(Xtrain,Ytrain,'maxDepth',20,'minParent',minParentVals(val));
-   validMSE2(val) = mse(dt,Xvalid,Yvalid);
+    trainMSE2(val) = mse(dt,Xtrain,Ytrain);
+    validMSE2(val) = mse(dt,Xvalid,Yvalid);
 end
 
-plot(3:12,validMSE2)
+plot(3:12,validMSE2,'g-');
+hold on
+plot(3:12,trainMSE2,'r--');
 xlabel('log_2(MinParent) Value');
-ylabel('Validation MSE');
-title('Validation MSE versus minParent');
+ylabel('MSE');
+title('MSE versus minParent');
+legend('Validation MSE','Training MSE');
 [minMSE2,indexOfMinMSE2] = min(validMSE2);
 
 %%
