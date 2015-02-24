@@ -7,8 +7,8 @@ Ytr = load('kaggle/kaggle.Y.train.txt');
 
 %Part A
 [Xtrain,Xvalid,Ytrain,Yvalid] = splitData(Xtr,Ytr,0.8);
-%dt = treeRegress(Xtrain,Ytrain, 'maxDepth',20);
-%mseTree = mse(dt,Xvalid,Yvalid);
+dt = treeRegress(Xtrain,Ytrain, 'maxDepth',20);
+mseTree = mse(dt,Xvalid,Yvalid);
 
 %%
 
