@@ -11,7 +11,8 @@ plot(X(:,1),X(:,2),'ro')
 %%
 
 %Part B
-k=5;
+%k=5;
+k=20;
 [z,c,~] = kmeans(X,k);
 
 figure
