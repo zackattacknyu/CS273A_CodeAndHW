@@ -75,4 +75,10 @@ plot(c(:,1),c(:,2),'rx');
 
 %%
 
+%hierarchical aggolomorative clustering
+k=5;
+z = agglomCluster(X,k,'min');%single linkage
+plotClassify2D([],X,z)
 
+z = agglomCluster(X,k,'max');%complete linkage
+plotClassify2D([],X,z)
