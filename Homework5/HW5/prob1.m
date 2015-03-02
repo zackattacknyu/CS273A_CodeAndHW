@@ -86,10 +86,9 @@ plotClassify2D([],X,z)
 %%
 k=5;
 [z,T,~,~] = emCluster(X,k);
-%%
 plotClassify2D([],X,z)
 hold on
 for i=1:k
-   plotGauss2D(T.mu(i,:),T.Sig(:,:,i)); 
+   plotGauss2D(T.mu(i,:),T.Sig(:,:,i),'r'); 
 end
 
