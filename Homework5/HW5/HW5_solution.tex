@@ -75,6 +75,8 @@ The data does not look very clustered. Here is the plot of the raw data:
 
 \subsection*{Part b}
 
+I tried a few different initializations. I tried the 3 different ones available in the kmeans function as well as my own initialization points. For $k=5$, I arranged 5 points in an X-shape in the $x_1,x_2$ space. For $k=20$, I did two different initial arrangements: a $4x5$ grid and a $5x4$ grid in the $x_1,x_2$ space. For $k=5$ the lowest score came from my initialization. \\
+\\
 Here are the clusters for $k=5$
 \begin{figure}[h]
 \centering
@@ -88,7 +90,7 @@ Here are the clusters for $k=20$
 \begin{figure}[h]
 \centering
 \includegraphics[width=6 in]{prob1PartB_2.png}
-\caption{$k=5$ clustering with marked cluster centers}
+\caption{$k=20$ clustering with marked cluster centers}
 \end{figure}
 
 %\lstinputlisting[firstline=1, lastline=49]{prob1.m}
