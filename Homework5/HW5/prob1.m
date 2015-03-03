@@ -75,10 +75,16 @@ end
 
 
 %%
+
+%best score for k=5 was with z4
+if(k==5)
+   z = z4;
+   c = c4;
+end
 figure
 plotClassify2D([],X,z)
 hold on
-plot(c(:,1),c(:,2),'rx');
+plot(c(:,1),c(:,2),'rx','MarkerSize',10,'LineWidth',3);
 
 %%
 
