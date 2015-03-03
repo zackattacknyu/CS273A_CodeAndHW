@@ -75,9 +75,9 @@ The data does not look very clustered. Here is the plot of the raw data:
 
 \subsection*{Part b}
 
-I tried a few different initializations. I tried the 3 different ones available in the kmeans function as well as my own initialization points. For $k=5$, I arranged 5 points in an X-shape in the $x_1,x_2$ space. For $k=20$, I did two different initial arrangements: a $4x5$ grid and a $5x4$ grid in the $x_1,x_2$ space. For $k=5$ the lowest score came from my initialization. \\
+I tried a few different initializations. I tried the 3 different ones available in the kmeans function as well as my own initialization points. For $k=5$, I arranged 5 points in an X-shape in the $x_1,x_2$ space. For $k=20$, I did two different initial arrangements: a $4x5$ grid and a $5x4$ grid in the $x_1,x_2$ space. For $k=5$ the lowest score came from my initialization. For $k=20$ the lowest score also came from my initialization, specifically the $5x4$ initialization, although the $4x5$ grid had nearly the same score. \\
 \\
-Here is the 5-means clustering
+Here is the best 5-means clustering I was able to achieve
 \begin{figure}[h]
 \centering
 \includegraphics[width=6 in]{prob1PartB_1.png}
@@ -86,14 +86,17 @@ Here is the 5-means clustering
 
 \newpage
 
-Here are the clusters for $k=20$
+Here is the best 20-means clustering I was able to achieve.
 \begin{figure}[h]
 \centering
 \includegraphics[width=6 in]{prob1PartB_2.png}
-\caption{$k=20$ clustering with marked cluster centers}
+\caption{$k=20$ clustering with x marks for cluster centers}
 \end{figure}
 
-%\lstinputlisting[firstline=1, lastline=49]{prob1.m}
+\newpage
+
+Here is the code for Part A and B.
+\lstinputlisting[firstline=1, lastline=93]{prob1.m}
 
 
 

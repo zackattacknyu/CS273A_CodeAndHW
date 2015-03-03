@@ -11,8 +11,10 @@ plot(X(:,1),X(:,2),'ro')
 %%
 
 %Part B
-k=5;
-%k=20;
+
+%change this depending on whether we are doing k=5 or k=20
+%k=5;
+k=20;
 
 minX1 = min(X(:,1)); 
 minX2 = min(X(:,2));
@@ -80,6 +82,10 @@ end
 if(k==5)
    z = z4;
    c = c4;
+end
+if(k==20)
+   z = z6;
+   c = c6;
 end
 figure
 plotClassify2D([],X,z)
