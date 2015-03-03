@@ -140,6 +140,32 @@ As can be observed, single linkage tries to group the points into as few cluster
 Here is the code for Part C\\
 \lstinputlisting[firstline=95, lastline=103]{prob1.m}
 
+\newpage
+
+\subsection*{Part d}
+
+Here is the plot of 5 clusters found using EM
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob1PartD_1.png}
+\caption{EM run to figure out 5 clusters}
+\end{figure}
+\newpage
+Here is the plot of 20 clusters found using EM
+\begin{figure}[h]
+\centering
+\includegraphics[width=6 in]{prob1PartD_2.png}
+\caption{EM run to figure out 20 clusters}
+\end{figure}
+
+\newpage
+
+I used the same initializations as k-means, including the points I constructed. The score I used was the log likelihood. With this score, the higher the better. The best log likelihood I achieved occurred when I specified points. This is similar to what happened when I did k-Means. \\
+\\
+Overall, k-Means clustering seems to be the most reasonable as the clusters look the most logical to me. \\
+\\
+Here is the code for Part D. It relies on the code from Part A and B.
+\lstinputlisting[firstline=105, lastline=127]{prob1.m}
 
 
 \end{document}

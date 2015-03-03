@@ -13,8 +13,8 @@ plot(X(:,1),X(:,2),'ro')
 %Part B
 
 %change this depending on whether we are doing k=5 or k=20
-%k=5;
-k=20;
+k=5;
+%k=20;
 
 minX1 = min(X(:,1)); 
 minX2 = min(X(:,2));
@@ -104,7 +104,22 @@ plotClassify2D([],X,z)
 
 %%
 k=5; 
-[z,T,~,~] = emCluster(X,k);
+%k=20;
+[z1,T1,~,score1] = emCluster(X,k,'random');
+[z2,T2,~,score2] = emCluster(X,k,'farthest');
+[z3,T3,~,score3] = emCluster(X,k,'k++');
+
+if(k==5)
+   [z4,T4,score4] = emCluster(X,k,initPts5); 
+end
+
+if(k==20)
+    [z5,T5,score5] = emCluster(X,k,initPts20A);
+    [z6,T6,score6] = emCluster(X,k,initPts20B);
+end
+%%
+z=z4;T=T4; %for 5 clusters
+%z=z5;T=T5; %when there are 20 clusters
 plotClassify2D([],X,z)
 hold on
 for i=1:k
