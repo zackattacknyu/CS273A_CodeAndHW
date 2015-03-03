@@ -95,7 +95,7 @@ plot(c(:,1),c(:,2),'rx','MarkerSize',10,'LineWidth',3);
 %%
 
 %hierarchical aggolomorative clustering
-k=5;
+k=5; %change this between 5 and 20
 z = agglomCluster(X,k,'min');%single linkage
 plotClassify2D([],X,z)
 
@@ -103,7 +103,7 @@ z = agglomCluster(X,k,'max');%complete linkage
 plotClassify2D([],X,z)
 
 %%
-k=5;
+k=5; 
 [z,T,~,~] = emCluster(X,k);
 plotClassify2D([],X,z)
 hold on
