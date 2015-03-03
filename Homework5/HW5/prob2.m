@@ -7,3 +7,9 @@ W = max(wid); % size of vocab
 N = sum(cnt); % total number of words
 % It is often helpful to normalize by the document length:
 Xn= X./repmat(sum(X,2),[1,W]) ; % divide word counts by doc length
+
+for i=1:size(Xn,1)
+   [sorted,order] = sort( Xn(i,:), 2, 'descend');
+    fprintf('Doc %d: ',i); fprintf('%s ',vocab{order(1:10)}); fprintf('\n'); 
+end
+
