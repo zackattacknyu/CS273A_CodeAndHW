@@ -12,4 +12,16 @@ for i=1:size(Xn,1)
    [sorted,order] = sort( Xn(i,:), 2, 'descend');
     fprintf('Doc %d: ',i); fprintf('%s ',vocab{order(1:10)}); fprintf('\n'); 
 end
+%%
 
+scores = zeros(1,4);
+bestScore = Inf;
+for j=1:4
+    [zCur,cCur,score] = kmeans(Xn,20);
+    scores(j) = score;
+    if(score < bestScore)
+       z = zCur;
+       c = cCur;
+       bestScore = score;
+    end
+end
