@@ -14,14 +14,30 @@ for i=1:size(Xn,1)
 end
 %%
 
-scores = zeros(1,4);
+%Part A and B
+K=20;
+numTrials = 4;
+scores = zeros(1,numTrials);
 bestScore = Inf;
-for j=1:4
-    [zCur,cCur,score] = kmeans(Xn,20);
+for j=1:numTrials
+    [zCur,cCur,score] = kmeans(Xn,K);
     scores(j) = score;
     if(score < bestScore)
        z = zCur;
        c = cCur;
        bestScore = score;
     end
+end
+
+%%
+
+%Part C
+
+%gets the number of documents per cluster
+[numDocsPerCluster,Clusters] = hist(z,unique(z));
+
+%%
+for i=1:K
+   [~,orderI] = sort( c(i,:), 'descend');
+   fprintf('Cluster %d: ',i); fprintf('%s ',vocab{orderI(1:10)}); fprintf('\n');
 end
