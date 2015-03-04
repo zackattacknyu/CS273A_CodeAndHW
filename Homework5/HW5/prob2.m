@@ -36,8 +36,20 @@ end
 %gets the number of documents per cluster
 [numDocsPerCluster,Clusters] = hist(z,unique(z));
 
-%%
+%prints out the clusters
 for i=1:K
    [~,orderI] = sort( c(i,:), 'descend');
    fprintf('Cluster %d: ',i); fprintf('%s ',vocab{orderI(1:10)}); fprintf('\n');
 end
+
+%%
+
+%Part D
+%gets the assignments for docs 1,15,30
+assign1 = z(1);
+assign15 = z(15);
+assign30 = z(30);
+
+docsWithSameAs1 = find(z==assign1);
+docsWithSameAs15 = find(z==assign15);
+docsWithSameAs30 = find(z==assign30);
