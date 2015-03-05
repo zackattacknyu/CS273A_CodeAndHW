@@ -16,7 +16,7 @@ end
 
 %Part A and B
 K=20;
-numTrials = 4;
+numTrials = 5;
 scores = zeros(1,numTrials);
 bestScore = Inf;
 for j=1:numTrials
@@ -81,7 +81,7 @@ for j=1:numTrials
        bestScore = score;
     end
 end
-%%
+
 %gets the assignments for docs 1,15,30
 docNums = [1 15 30];
 assignments = zeros(1,3);
