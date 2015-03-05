@@ -54,8 +54,14 @@ for i = 1:3
    docsWithSameCluster{i} = find(z == assignments(i));
 end
 
-%%
-i = docsWithSameAs1(1);
-fname = sprintf('data/text/example1/20000101.%04d.txt',i);
-txt = textread(fname,'%s',10,'whitespace','\r\n'); 
-fprintf('%s\n',txt{:});
+for cluster = 1:3
+    currentDocs = docsWithSameCluster{cluster};
+   for doc = 1:min(12,length(currentDocs));
+       curDocNum = currentDocs(doc);
+       fname = sprintf('data/text/example1/20000101.%04d.txt',curDocNum);
+        txt = textread(fname,'%s',10,'whitespace','\r\n'); 
+        fprintf('%s\n',txt{:});
+        fprintf('\n');
+   end
+   fprintf('\n\n\n');
+end
