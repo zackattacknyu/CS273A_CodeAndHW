@@ -46,10 +46,16 @@ end
 
 %Part D
 %gets the assignments for docs 1,15,30
-assign1 = z(1);
-assign15 = z(15);
-assign30 = z(30);
+docNums = [1 15 30];
+assignments = zeros(1,3);
+docsWithSameCluster = cell(1,3);
+for i = 1:3
+   assignments(i) = z(docNums(i)); 
+   docsWithSameCluster{i} = find(z == assignments(i));
+end
 
-docsWithSameAs1 = find(z==assign1);
-docsWithSameAs15 = find(z==assign15);
-docsWithSameAs30 = find(z==assign30);
+%%
+i = docsWithSameAs1(1);
+fname = sprintf('data/text/example1/20000101.%04d.txt',i);
+txt = textread(fname,'%s',10,'whitespace','\r\n'); 
+fprintf('%s\n',txt{:});
