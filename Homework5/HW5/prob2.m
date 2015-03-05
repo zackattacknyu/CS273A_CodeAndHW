@@ -65,3 +65,40 @@ for cluster = 1:3
    end
    fprintf('\n\n\n');
 end
+%%
+
+%Part E
+K=40;
+numTrials = 4;
+scores = zeros(1,numTrials);
+bestScore = Inf;
+for j=1:numTrials
+    [zCur,cCur,score] = kmeans(Xn,K);
+    scores(j) = score;
+    if(score < bestScore)
+       z = zCur;
+       c = cCur;
+       bestScore = score;
+    end
+end
+%%
+%gets the assignments for docs 1,15,30
+docNums = [1 15 30];
+assignments = zeros(1,3);
+docsWithSameCluster = cell(1,3);
+for i = 1:3
+   assignments(i) = z(docNums(i)); 
+   docsWithSameCluster{i} = find(z == assignments(i));
+end
+
+for cluster = 1:3
+    currentDocs = docsWithSameCluster{cluster};
+   for doc = 1:min(12,length(currentDocs));
+       curDocNum = currentDocs(doc);
+       fname = sprintf('data/text/example1/20000101.%04d.txt',curDocNum);
+        txt = textread(fname,'%s',10,'whitespace','\r\n'); 
+        fprintf('%s\n',txt{:});
+        fprintf('\n');
+   end
+   fprintf('\n\n\n');
+end
