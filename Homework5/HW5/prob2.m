@@ -41,6 +41,12 @@ for i=1:K
    [~,orderI] = sort( c(i,:), 'descend');
    fprintf('Cluster %d: ',i); fprintf('%s ',vocab{orderI(1:10)}); fprintf('\n');
 end
+%%
+%prints out the histogram of num docs per cluster
+hist(z,20)
+xlabel('Cluster Number');
+ylabel('Number of Documents in Cluster');
+title('Number of Documents per Cluster');
 
 %%
 
