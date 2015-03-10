@@ -64,7 +64,7 @@
 \subsection*{Part a}
 
 The data does not look very clustered. Here is the code to load the data and make an initial plot. 
-\lstinputlisting[firstline=1, lastline=11]{prob1.m}
+\lstinputlisting[firstline=1, lastline=9]{prob1.m}
 
 \newpage
 
@@ -241,7 +241,7 @@ Cluster 18: square times city economy york millennium 000 2000 mexico party \\
 Cluster 19: lott players union executive player nfl think case challenge director \\
 Cluster 20: team game season league players coach games play win teams \\
 \\
-Some of these seem to be interpretable sets. Cluster 17 seem to be politics related articles. Cluster 19 seem to be sports related articles. Other clusters though, such as cluster 3, do not seem to have a coherent theme. \\
+Some of these seem to be interpretable sets. Cluster 17 seems to be politics related articles. Cluster 19 seems to be sports related articles. Other clusters though, such as cluster 3, do not seem to have a coherent theme. \\
 \\
 Here is the code to complete Part C. It relies on the code from the previous part: \\
 \lstinputlisting[firstline=32, lastline=49]{prob2.m}
@@ -293,16 +293,29 @@ Here is the code to complete Part C. It uses the code from Part A and B
 
 \subsection*{Part d}
 
-Here is what the first few principal directions looks like
-\begin{figure}[h]
+Here is what the first few principal directions looks like:\\
+\begin{figure}[h!]
 \centering
-\includegraphics[width=6 in]{prob3PartD.png}
+\includegraphics[width=5.5 in]{prob3PartD.png}
 \caption{Face image for j=1,2,3}
 \end{figure}
-
-Here is the code I used to get the images in part d
+\newpage
+Here is the code I used to get the images in part D. It uses the Part A and B code.\\
 \lstinputlisting[firstline=30, lastline=45]{prob3.m}
 
+\newpage
+
+\subsection*{Part e}
+
+Here are some of the faces shown in their coordinates in the first two directions\\
+\begin{figure}[h!]
+\centering
+\includegraphics[width=6 in]{prob3PartE.png}
+\caption{Faces 20-30 displayed with their first two coordinates}
+\end{figure}
+\newpage
+Here is the code I used to get the plot for part E. It uses the code from Part A and B.\\
+\lstinputlisting[firstline=47, lastline=54]{prob3.m}
 
 
 \end{document}

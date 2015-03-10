@@ -14,7 +14,7 @@ for i=1:size(Xn,1)
 end
 %%
 
-%Part A and B
+%Part A and B. scores(1) is the result for Part A.
 K=20;
 numTrials = 5;
 scores = zeros(1,numTrials);
