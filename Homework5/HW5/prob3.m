@@ -56,13 +56,26 @@ for i=idx, imagesc(W(i,1)*scale(1),W(i,2)*scale(2), reshape(X(i,:),24,24)); end;
 %%
 
 %Part F
-K=50; %need to test K=5,10,50
-faceNum = 15; %test 10,15
-X_0hat = W(:,1:K)*(V(:,1:K)');
-imgRecon = reshape(X_0hat(faceNum,:),[24 24]);
+%faceNum = 15; 
+faceNum = 10;
+Kvals = [5 10 50];
+
+%display original image
 figure
-imagesc(imgRecon); axis square; colormap gray;
-figure
+subplot(2,2,1);
 imagesc(reshape(X(faceNum,:),[24 24])); axis square; colormap gray;
+title('Original Image');
+
+for i = 1:3
+    K=Kvals(i);
+    X_0hat = W(:,1:K)*(V(:,1:K)');
+    imgRecon = reshape(X_0hat(faceNum,:),[24 24]);
+    
+    %display image reconstruction
+    subplot(2,2,i+1);
+    imagesc(imgRecon); axis square; colormap gray;
+    title(strcat('Image Reconstruction with K=',num2str(K)));
+end
+
 
 
