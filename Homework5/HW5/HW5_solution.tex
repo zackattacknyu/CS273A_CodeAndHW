@@ -63,13 +63,8 @@
 
 \subsection*{Part a}
 
-The data does not look very clustered. Here is the plot of the raw data:
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=6 in]{prob1PartA.png}
-\caption{Raw Iris Data}
-\end{figure}
+The data does not look very clustered. Here is the code to load the data and make an initial plot. 
+\lstinputlisting[firstline=1, lastline=11]{prob1.m}
 
 \newpage
 
@@ -95,8 +90,8 @@ Here is the best 20-means clustering I was able to achieve.
 
 \newpage
 
-Here is the code for Part A and B.
-\lstinputlisting[firstline=1, lastline=93]{prob1.m}
+Here is the code for Part B.
+\lstinputlisting[firstline=11, lastline=93]{prob1.m}
 
 \newpage
 
@@ -162,7 +157,7 @@ Here is the plot of 20 clusters found using EM
 
 I used the same initializations as k-means, including the points I constructed. The score I used was the log likelihood. With this score, the higher the better. The best log likelihood I achieved occurred when I specified points. This is similar to what happened when I did k-Means. \\
 \\
-Overall, k-Means clustering seems to be the most reasonable as the clusters look the most logical to me. \\
+Overall, k-Means clustering seems to be the most reasonable as the clusters look the most logical to me. The EM clustering does have the advantage of being able to discern clusters that end up sharing regions of the Euclidean space. \\
 \\
 Here is the code for Part D. It relies on the code from Part A and B.
 \lstinputlisting[firstline=105, lastline=127]{prob1.m}
@@ -191,7 +186,7 @@ Here is the code for Part A and B\\
 
 \subsection*{Part c}
 
-This is the number of articles per cluster (line $i$ corresponds to number of documents in cluster $i$)\:\
+This is the number of articles per cluster (line $i$ corresponds to number of documents in cluster $i$):\\
 1     \\
 1     \\
 1    \\
@@ -224,6 +219,7 @@ Here is a histogram visual of this data
 \newpage
 
 Here are the first most likely words for each cluster:\\
+\\
 Cluster 1: laredo border international mexico river american city green mayor rio \\
 Cluster 2: feet square broadway seventh street side times avenue block million \\
 Cluster 3: test end houston 000 0101 0102 100 1900 1900s 1968 \\
@@ -254,37 +250,18 @@ Here is the code to complete Part C. It relies on the code from the previous par
 
 \subsection*{Part d}
 
-Here are the documents in the same cluster as document 1:\\
-\lstinputlisting[firstline=1, lastline=131]{prob2PartD_1.txt}
-These seem to all be related to sports. \\
+After printing the documents related to document 1, these seem to all be related to sports. \\
 \\
-Here are the documents in the same cluster as 15:\\
-\lstinputlisting[firstline=1, lastline=131]{prob2PartD_15.txt}
-These seem to all be related to the Y2K phenomenon. \\
+After printing the documents related to document 15, they seem to all be related to the Y2K phenomenon. \\
 \\
-Here is the cluster related to article 30:
-\\
-\lstinputlisting[firstline=1, lastline=131]{prob2PartD_30.txt}
-These do not seem to be related\\
+After printing the documents related to document 30, they do not seem to have a discernable theme. \\
 \\
 Here is the code for Part D\\
 \lstinputlisting[firstline=51, lastline=73]{prob2.m}
-
+\newpage
 \subsection*{Part e}
 
-The best score when 40 clusters were done was $1.7247$. This is a better score than what we achieved with k-Means clustering. The cluster related to article 15 was very similar to what we got with 20 clusters but the other clusters were very different. This suggests that articles 1 and 30 were not very similar to many articles hence it ended up being somewhat arbitrary which documents they were 'similar' to. \\
-\\
-Here are the documents in the same cluster as document 1
-%\lstinputlisting[firstline=1, lastline=131]{prob2PartE_1.txt}
-These seem to all be related to sports. \\
-\\
-Here are the documents in the same cluster as 15
-%\lstinputlisting[firstline=1, lastline=131]{prob2PartE_15.txt}
-These seem to all be related to the Y2K phenomenon. \\
-\\
-Here is the cluster related to article 30
-%\lstinputlisting[firstline=1, lastline=131]{prob2PartE_30.txt}
-These do not seem to be related\\
+The best score when 40 clusters were done was $1.6950$. This is a better score than what we achieved when $k=20$. The cluster related to documents 1 and 15 had the same theme as what we got with 20 clusters. With document 30, there was still not a discernable theme to the documents that were in the same cluster as it. When I first ran the k-Means clustering with $k=40$, there were 100 documents in the same cluster as document 1 and they did not have a theme. I re-ran k-Means with a different initialization, the k++ method, and I achieved the current result. \\
 \\
 Here is the code for Part E\\
 \lstinputlisting[firstline=76, lastline=110]{prob2.m}

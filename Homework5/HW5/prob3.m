@@ -6,8 +6,8 @@ imagesc(img); axis square; colormap gray; % display an image patch; you may have
 
 %%
 %Part A
-mu = mean(X,2);
-muMat = repmat(mu,1,576);
+mu = mean(X);
+muMat = repmat(mu,size(X,1),1);
 X_0 = X-muMat;
 
 %%
@@ -28,13 +28,11 @@ ylabel('Mean Squared Error');
 title('MSE as function of K');
 
 %%
-
-%%
 %Part D
-j=5;
-alpha = 10;
-img1 = reshape(mu(j) + alpha*V(j,:)', [24 24]);
-img2 = reshape(mu(j) - alpha*V(j,:)', [24 24]);
+j=1;
+alpha = 2*median(abs(W(:,j)));
+img1 = reshape(mu + alpha*V(:,j)', [24 24]);
+img2 = reshape(mu - alpha*V(:,j)', [24 24]);
 
 figure
 imagesc(img1); axis square; colormap gray;

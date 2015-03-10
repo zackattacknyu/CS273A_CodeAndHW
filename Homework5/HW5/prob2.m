@@ -79,7 +79,7 @@ numTrials = 4;
 scores = zeros(1,numTrials);
 bestScore = Inf;
 for j=1:numTrials
-    [zCur,cCur,score] = kmeans(Xn,K);
+    [zCur,cCur,score] = kmeans(Xn,K,'k++');
     scores(j) = score;
     if(score < bestScore)
        z = zCur;
