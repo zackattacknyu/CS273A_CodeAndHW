@@ -35,10 +35,13 @@ img1 = reshape(mu + alpha*V(:,j)', [24 24]);
 img2 = reshape(mu - alpha*V(:,j)', [24 24]);
 
 figure
+subplot(1,2,2*j-1);
 imagesc(img1); axis square; colormap gray;
+title(strcat('mu + alpha*V(:,',num2str(j),')'));
 
-figure
+subplot(1,2,2*j);
 imagesc(img2); axis square; colormap gray;
+title(strcat('mu - alpha*V(:,',num2str(j),')'));
 
 %%
 
